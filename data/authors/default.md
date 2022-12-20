@@ -1,5 +1,5 @@
 ---
-name: Karan Pratap Singh
+name: Jimit Patel
 shortname: Karan
 avatar: /static/avatar.jpg
 occupation: Senior Software Engineer

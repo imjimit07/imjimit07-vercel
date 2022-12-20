@@ -1,7 +1,7 @@
 const siteMetadata = {
-  title: 'Karan Pratap Singh',
-  author: 'Karan Pratap Singh',
-  headerTitle: 'Karan Pratap Singh',
+  title: 'Jimit Patel',
+  author: 'Jimit Patel',
+  headerTitle: 'Jimit Patel',
   description:
     'A software engineer who values learning and growing with people, teams, and technologies.',
   language: 'en-us',
