@@ -1,6 +1,6 @@
 ---
 name: Jimit Patel
-shortname: Karan
+shortname: Jimit
 avatar: /static/avatar.jpg
 occupation: Senior Software Engineer
 company: Curebase
