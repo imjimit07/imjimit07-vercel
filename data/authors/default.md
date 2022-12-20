@@ -5,10 +5,10 @@ avatar: /static/avatar.jpg
 occupation: Senior Software Engineer
 company: Curebase
 resume: /static/Karan_Resume.pdf
-email: contact@karanpratapsingh.com
-twitter: https://twitter.com/karan_6864
-linkedin: https://www.linkedin.com/in/karan99
-github: https://github.com/karanpratapsingh
+email: imjimit07@gmail.com
+twitter: https://twitter.com/imjimit07
+linkedin: https://www.linkedin.com
+github: https://github.com/imjimit07
 ---
 
 A software engineer who values learning and growing with people, teams, and technologies.
