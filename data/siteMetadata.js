@@ -6,8 +6,8 @@ const siteMetadata = {
     'A software engineer who values learning and growing with people, teams, and technologies.',
   language: 'en-us',
   theme: 'system', // system, dark or light
-  siteUrl: 'https://karanpratapsingh.com',
-  siteRepo: 'https://github.com/karanpratapsingh/portfolio',
+  siteUrl: 'https://imjimit07.vercel.app/',
+  siteRepo: 'https://github.com/imjimit07/imjimit07-vercel',
   siteLogo: '/static/images/logo.png',
   image: '/static/avatar.jpg',
   socialBanner: '/static/banner.png',
