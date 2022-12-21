@@ -34,12 +34,6 @@ function Contact(): React.ReactElement {
           <p>
             Do you have a project in mind? Want to hire me? or simply wanna
             chat? Feel free to
-            <span
-              className='ml-2 cursor-pointer !font-normal !text-black !no-underline dark:!text-white'
-              onClick={onScheduleMeeting}
-              role='button'
-              tabIndex={0}
-            >
               <RoughNotation
                 show
                 type='underline'
@@ -48,7 +42,7 @@ function Contact(): React.ReactElement {
                 animationDuration={2000}
                 color={randomColor}
               >
-                schedule a meeting
+                <a href="mailto:imjimit07@gmail.com">email me!</a>
               </RoughNotation>
             </span>
           </p>
