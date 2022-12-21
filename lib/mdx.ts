@@ -125,7 +125,7 @@ export async function getFileBySlug<T>(
   };
 }
 
-export async function getAllFilesFrontMatter(folder: 'blog' | 'courses' | 'snippets') {
+export async function getAllFilesFrontMatter(folder) {
   const prefixPaths = path.join(root, 'data', folder);
 
   const files = getAllFilesRecursively(prefixPaths);
