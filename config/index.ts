@@ -1,5 +1,4 @@
 import { contact, Contact } from './contact';
-import { Course, courses } from './courses';
 import { Project, projects } from './projects';
 
 interface Config {
