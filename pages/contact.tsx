@@ -33,7 +33,7 @@ function Contact(): React.ReactElement {
         <div className='container py-12'>
           <p>
             Do you have a project in mind? Want to hire me? or simply wanna
-            chat? Feel free to
+            chat? Feel free to 
               <RoughNotation
                 show
                 type='underline'
