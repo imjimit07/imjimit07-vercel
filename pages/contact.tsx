@@ -44,7 +44,6 @@ function Contact(): React.ReactElement {
               >
                 <a href="mailto:imjimit07@gmail.com">email me!</a>
               </RoughNotation>
-            </span>
           </p>
         </div>
       </div>
