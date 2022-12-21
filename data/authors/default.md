@@ -11,8 +11,10 @@ linkedin: https://www.linkedin.com
 github: https://github.com/imjimit07
 ---
 
-A software engineer who values learning and growing with people, teams, and technologies.
+I'm a Creative Developer from Dubai, United Arab Emirates, learning software development and web development. I enjoy turning complex problems into simple, beautiful and intuitive designs.
 
-Presently, I am working as a Senior Software Engineer at [Curebase](https://www.curebase.com) where I am helping to build a decentralized clinical trial platform while scaling infrastructure with a focus on security, HIPAA, and GDPR compliance.
+I was born at 23rd September 2007 in Mumbai, India. Currently, I am staying in Dubai and enjoy the life at my best. I play games in my free time. I also play keyboard and do some programming.
 
-Previously I've worked with the Digitization Program Office (DPO) at the [Smithsonian Institution](https://www.si.edu) as a consulting Full Stack Engineer in collaboration with the Office of the Chief Information Officer (OCIO).
+Computer Applications is my favourite subject in school. I like to solve complex problems whenever I get free time. I love playing cricket and chess.
+
+My aim to make websites and softwares that are functional and user-friendly. Moreover, I add personal touch to my products and make sure that is eye-catching and easy to use.
