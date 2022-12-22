@@ -43,23 +43,6 @@ export default function AuthorLayout({ children, frontMatter }: Props) {
           <div className='prose max-w-none pt-8 pb-8 dark:prose-dark xl:col-span-2'>
             {children}
             <p className='mt-8'>
-              <a
-                className='!font-normal !text-black !no-underline dark:!text-white'
-                href={resume}
-                target='_blank'
-                rel='noreferrer'
-              >
-                <RoughNotation
-                  show
-                  type='box'
-                  animationDelay={250}
-                  animationDuration={2000}
-                  strokeWidth={2}
-                  color={resumeColor}
-                >
-                  Resume
-                </RoughNotation>
-              </a>
               <h2 className='mt-8 mb-4 text-2xl font-semibold dark:text-white'>
                 Skills
               </h2>
