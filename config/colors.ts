@@ -1,6 +1,5 @@
 export const Colors = {
   // Languages
-  go: '#00ADD8',
   python: '#4B8BBE',
   typescript: '#234A84',
   javascript: '#F7DF1E',
