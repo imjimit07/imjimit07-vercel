@@ -32,7 +32,7 @@ function Contact(): React.ReactElement {
         <Header title='Contact' />
         <div className='container py-12'>
           <p>
-            Do you have a project in mind? Want to hire me? or simply wanna
+            Do you have a project in mind? or simply wanna
             chat? Feel free to
             <span
               className='ml-2 cursor-pointer !font-normal !text-black !no-underline dark:!text-white'
