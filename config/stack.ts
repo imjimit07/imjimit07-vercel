@@ -18,7 +18,6 @@ export const WorkStack = [
   Stack.typescript,
   Stack.python,
   Stack.html,
-  Stack.react,
   Stack.docker,
   Stack.reactnative,
 ];
