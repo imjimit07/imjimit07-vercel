@@ -1,0 +1,220 @@
+---
+title: Lofi Girl Music Downloader
+date: '2022-12-22'
+tags: [python]
+draft: false
+summary: Download Lofi Girl Music
+images: []
+layout: PostSimple
+---
+
+With this code you can download albums, art and the metadata from [https://lofigirl.com/](https://lofigirl.com/) for free!
+
+# Steps
+
+1. Install [Python](https://www.python.org/downloads/)
+2. Open a new Python file and paste the code given below.
+3. Save the file.
+4. Install the prerequisites (bs4, urllib3, os, wget, eyed3, colorama)
+5. Run the file and download the songs you want!
+
+<stong>Enjoy!</strong>
+
+```py showLineNumbers
+from bs4 import BeautifulSoup
+import urllib3
+import os
+import wget
+import eyed3
+from colorama import Fore, Style
+
+RELEASES_LINK = 'https://lofigirl.com/blogs/releases'
+RELEASES_LINK_PREFIX = 'https://lofigirl.com'
+
+DOWNLOAD_FOLDER_NAME = 'lofi'
+PLAYLIST_FILENAME = 'playlist.m3u'
+CREDITS_FILENAME = 'credits.txt'
+COVER_FILENAME = 'cover.png'
+SONG_EXTENSION = '.mp3'
+
+http = urllib3.PoolManager()
+
+
+def get_releases():
+    resp = http.request('GET', RELEASES_LINK)
+    soup = BeautifulSoup(resp.data, 'html.parser')
+
+    releases_links = []
+    releases_names = []
+    releases_artists = []
+
+    for link in soup.find_all('div', class_='Cv_release_mini_wrap_inner'):
+        releases_links.append(RELEASES_LINK_PREFIX+link.find('a').get('href'))
+        releases_names.append(link.find('h2').string)
+        releases_artists.append(link.find('i').string)
+
+    releases_links = list(dict.fromkeys(releases_links))
+    releases_names = list(dict.fromkeys(releases_names))
+    releases_links.reverse()
+    releases_names.reverse()
+    releases_artists.reverse()
+
+    return (releases_links, releases_names, releases_artists)
+
+
+def print_releases_list(releases_links, releases_names, releases_artists):
+    for i in range (0,len(releases_links)):
+        print(Fore.RED + str(i+1) + '. '+Fore.BLUE+releases_names[i]+Style.RESET_ALL+' by '+Fore.GREEN+releases_artists[i])
+    print(Style.RESET_ALL)
+
+
+def check_valid_release_index(index, releases_count):
+    valid = index > 0 and index <= releases_count
+    if not valid:
+        print(Fore.RED + 'Invalid release index \"' + str(index) + '\", must be between 1 and ' + str(releases_count) + '. Aborting.' + Style.RESET_ALL)
+        quit()
+
+
+def select_releases(releases_count):
+    download_mode = input('Do you want to download a single release (S), a range (R) or all (A)? ')
+    download_mode = download_mode.lower()
+    if download_mode == 's':
+        selected_release = input('Enter the release number: ')
+        start_index = int(selected_release)
+        check_valid_release_index(start_index, releases_count)
+        end_index = start_index
+    elif download_mode == 'r':
+        selected_release_start = input('Enter the starting release number: ')
+        start_index = int(selected_release_start)
+        check_valid_release_index(start_index, releases_count)
+        selected_release_end = input('Enter the ending release number: ')
+        end_index = int(selected_release_end)
+        check_valid_release_index(end_index, releases_count)
+    elif download_mode == 'a':
+        start_index = 1
+        end_index = releases_count
+    else:
+        print(Fore.RED + 'Invalid mode \"' + download_mode + '\". Aborting.' + Style.RESET_ALL)
+        quit()
+    return (start_index, end_index)
+
+
+def print_credits(release_link, sound_file_titles, sound_file_artists, album_name):
+    print(Fore.RED + 'Here is the usage policy and credit templates:' + Style.RESET_ALL)
+    print('https://lofigirl.com/pages/use-the-music')
+    print(Fore.RED + 'Here\'s the link to the release:' + Style.RESET_ALL)
+    print(release_link)
+    print(Fore.RED + 'And here\'s the credit template for youtube for an entire album. Note that watch and listen links only show search queries on their respective platforms:' + Style.RESET_ALL)
+    for i in range(0, len(sound_file_titles)):
+        print('- '+sound_file_artists[i] + ' - ' + sound_file_titles[i])
+    print('- Provided by Lofi Girl')
+    print('- Watch: https://www.youtube.com/c/LofiGirl/search?query=' + album_name.replace(' ',''))
+    print('- Listen: https://open.spotify.com/search/' + album_name.replace(' ',''))
+
+
+def write_credits_file(album_folder_name, release_link, sound_file_titles, sound_file_artists, album_name):
+    credits_path = os.path.join(album_folder_name, CREDITS_FILENAME)
+    with open(credits_path, 'w') as f:
+        f.write('Here is the usage policy and credit templates:\nhttps://lofigirl.com/pages/use-the-music\nHere\'s the link to the release:\n')
+        f.write(release_link)
+        f.write('\nAnd here\'s the credit template for youtube for an entire album. Note that watch and listen links only show search queries on their respective platforms:\n')
+        for i in range(0, len(sound_file_titles)):
+            f.write(f'- {sound_file_artists[i]} - {sound_file_titles[i]}\n')
+        f.write('- Provided by Lofi Girl\n')
+        f.write('- Watch: https://www.youtube.com/c/LofiGirl/search?query=' + album_name.replace(' ','')+'\n')
+        f.write('- Listen: https://open.spotify.com/search/' + album_name.replace(' ',''))
+
+
+def download_song(i, sound_file_link, sound_file_title, sound_file_artist, album_name, album_folder_name, release_playlist_file, playlist_file):
+    sound_file_title = sound_file_title.replace(u"\u2019", "'")
+    sound_file_artist = sound_file_artist.replace(u"\u2019", "'")
+
+    sound_file_name = sound_file_title + SONG_EXTENSION
+    sound_file_path = os.path.join(album_name, sound_file_name)
+
+    if not sound_file_link:
+        print(Fore.RED + 'Cannot download song \"' + sound_file_title + '\" due to missing sound file link. Skipping.' + Style.RESET_ALL)
+        return [f'{album_name} - {sound_file_title}']
+
+    mp3_path = os.path.join(album_folder_name, sound_file_name)
+    wget.download(sound_file_link, out=mp3_path)
+
+    audiofile = eyed3.load(mp3_path)
+    audiofile.tag.album = album_name
+    audiofile.tag.artist = sound_file_artist
+    audiofile.tag.title = sound_file_title
+    audiofile.tag.track_num = i + 1
+    audiofile.tag.save()
+
+    release_playlist_file.write(os.path.join('.', sound_file_name) + '\n')
+    playlist_file.write(os.path.join('.', sound_file_path) + '\n')
+    return []
+
+
+def download_release(i, release_link, release_name, release_artist, playlist_file):
+    print(Fore.RED + str(i + 1) + '. ' + Fore.BLUE + release_name + Style.RESET_ALL + ' by ' + Fore.GREEN + release_artist + Style.RESET_ALL)
+
+    resp = http.request('GET', release_link)
+    soup = BeautifulSoup(resp.data, 'html.parser')
+
+    album_name = soup.find('div', class_='cv_custom_release_album_main_heading').h2.string
+    image_link = 'https:'+str(soup.find('div', class_='cv_custom_body_image_contents_album_part').a.get('href'))
+
+    sound_file_links = []
+    sound_file_titles = []
+    sound_file_artists = []
+    for link in soup.find_all('div', class_='cv_custom_album_play_contents_inner_part'):
+        sound_file_links.append(link.find('div', class_='cv_custom_download_icon_part').get('data-audio-src'))
+        sound_file_titles.append(link.find('div', class_='cv_custom_custom_content_description').h4.string.strip()[3:])
+        
+        artist_p = link.find('div', class_='cv_custom_custom_content_description').p
+        if artist_p is not None:
+            sound_file_artists.append(artist_p.string.strip())
+        else:
+            sound_file_artists.append('')
+
+    print_credits(release_link, sound_file_titles, sound_file_artists, album_name)
+
+    album_folder_name = os.path.join(DOWNLOAD_FOLDER_NAME, format(i+1, '03') + '. ' + album_name)
+    os.mkdir(album_folder_name)
+    wget.download(image_link, out=os.path.join(album_folder_name, COVER_FILENAME))
+
+    write_credits_file(album_folder_name, release_link, sound_file_titles, sound_file_artists, album_name)
+
+    missing_songs = []
+    release_playlist_file = open(os.path.join(album_folder_name, PLAYLIST_FILENAME),'w')
+    for j in range(0, len(sound_file_links)):
+        missing_song = download_song(j, sound_file_links[j], sound_file_titles[j], sound_file_artists[j], album_name, album_folder_name, release_playlist_file, playlist_file)
+        missing_songs.extend(missing_song)
+
+    release_playlist_file.close()
+    print('\n')
+    return missing_songs
+
+
+def main():
+    releases_links, releases_names, releases_artists = get_releases()
+    print_releases_list(releases_links, releases_names, releases_artists)
+
+    start_index, end_index = select_releases(len(releases_links))
+
+    os.mkdir(DOWNLOAD_FOLDER_NAME)
+    playlist_file = open(os.path.join(DOWNLOAD_FOLDER_NAME, PLAYLIST_FILENAME),'w')
+    missing_songs = []
+    for i in range(start_index - 1, end_index):
+        release_missing_songs = download_release(i, releases_links[i], releases_names[i], releases_artists[i], playlist_file)
+        missing_songs.extend(release_missing_songs)
+
+    playlist_file.close()
+
+    if missing_songs:
+        print(Fore.RED + 'The following songs couldn\'t be downloaded:' + Style.RESET_ALL)
+        for missing_song in missing_songs:
+            print('\t' + missing_song)
+
+    print(Fore.GREEN + 'All done!' + Style.RESET_ALL)
+
+
+if __name__ == "__main__":
+    main()
+```
