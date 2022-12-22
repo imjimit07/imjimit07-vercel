@@ -35,7 +35,7 @@ export default function AuthorLayout({ children, frontMatter }: Props) {
               {name}
             </h3>
             <div className='font-medium text-gray-500 dark:text-gray-400'>
-              {occupation}
+              <center>{occupation}</center>
             </div>
             <div className='text-gray-500 dark:text-gray-400'>{company}</div>
           </div>

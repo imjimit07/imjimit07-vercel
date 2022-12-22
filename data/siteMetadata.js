@@ -3,7 +3,7 @@ const siteMetadata = {
   author: 'Jimit Patel',
   headerTitle: 'Jimit Patel',
   description:
-    'A software engineer who values learning and growing with people, teams, and technologies.',
+    'A student who values learning and growing with people, teams, and technologies.',
   language: 'en-us',
   theme: 'system', // system, dark or light
   siteUrl: 'https://imjimit07.vercel.app/',
