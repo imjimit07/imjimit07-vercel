@@ -147,7 +147,6 @@ export default function PostLayout({
                 {` • `}
                 <Link href={editUrl(fileName)}>{'View on GitHub'}</Link>
               </div>
-              <Comments frontMatter={frontMatter} />
             </div>
             <footer>
               <div className='xl:sticky xl:top-32'>
