@@ -6,6 +6,7 @@ export enum Stack {
   typescript,
   javascript,
   python,
+  html,
 
   // Frontend
   react,
@@ -40,6 +41,7 @@ export const WorkStack = [
   Stack.go,
   Stack.typescript,
   Stack.python,
+  Stack.html,
   Stack.react,
   Stack.aws,
   Stack.gcp,
@@ -72,6 +74,10 @@ export const StackInfo: Record<Stack, StackInfoMap> = {
   [Stack.go]: {
     value: 'Go',
     color: Colors.go,
+  },
+  [Stack.html]: {
+    value: 'HTML',
+    color: Colors.html,
   },
   [Stack.react]: {
     value: 'React',

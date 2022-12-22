@@ -4,6 +4,7 @@ export const Colors = {
   python: '#4B8BBE',
   typescript: '#234A84',
   javascript: '#F7DF1E',
+  html: '#F06428',
 
   // Frontend
   web: '#2D2D2D',
