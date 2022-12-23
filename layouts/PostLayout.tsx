@@ -1,3 +1,4 @@
+import Comments from '@/components/comments';
 import Link from '@/components/Link';
 import PageTitle from '@/components/PageTitle';
 import ScrollTopAndComment from '@/components/ScrollTopAndComment';
@@ -147,6 +148,7 @@ export default function PostLayout({
                 {` • `}
                 <Link href={editUrl(fileName)}>{'View on GitHub'}</Link>
               </div>
+              <Comments frontMatter={frontMatter} />
             </div>
             <footer>
               <div className='xl:sticky xl:top-32'>
