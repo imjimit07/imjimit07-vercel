@@ -1,0 +1,23 @@
+---
+title: Tips To Make You A Better Developer
+date: '2022-12-2'
+tags: ['Project', 'Journey']
+images: ['/static/blogs/banner.jpeg']
+draft: false
+summary: "Here are a few tips to make you become a better developer!"
+authors: ['default']
+---
+
+A few days ago, I came across an article by Simon Holdorf which talked about ways through which you can become a better developer. After I read through it, I thought that I should give you some tips to become a better developer if you are a beginner! Here are few tips that can help you:
+
+1. <h4>Never give up!</h4>
+
+I know when that when you write code for a very long time and then you finally run it, the result as an error. That feeling you get is experienced by everyone. You are not alone, all developers have felt that. Instead of giving up, you should try again and again. You can do it!
+
+2. <h4>Make notes</h4>
+
+Making flash flashcards is the best to remember all the concepts that you have learnt. Since you are learning a language it is best if you make your flash cards online.
+
+3. <h4>Always test your code</h4>
+
+When you are writing code, make sure that you run the 
