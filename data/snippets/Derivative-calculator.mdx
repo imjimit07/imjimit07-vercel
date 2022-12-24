@@ -1,0 +1,37 @@
+---
+title: Derivative Calculator
+date: '2022-12-26'
+draft: false
+summary: Find the root of the equation
+images: []
+layout: PostSimple
+tags: []
+---
+
+# Steps
+
+1. Install [Python](https://www.python.org/downloads/)
+2. Open a new Python file and paste the code given below.
+3. Save the file.
+4. Install the prerequisites (sympy)
+5. Run the file and download the songs you want!
+
+```py showLineNumbers
+from sympy import Symbol, Derivative, sympify, pprint
+from sympy.core.sympify import SympifyError
+
+def derivative(f, var):
+    var = Symbol(var)
+    d = Derivative(f, var).doit()
+    pprint(d)
+
+if __name__=='__main__':
+    f = input('Enter a function: ')
+    var = input('Enter the variable to differentiate with respect to: ')
+    try:
+        f = sympify(f)
+    except SympifyError:
+        print('Invalid input')
+    else:
+        derivative(f, var)
+```
