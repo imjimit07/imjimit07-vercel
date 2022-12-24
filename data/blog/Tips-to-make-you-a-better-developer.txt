@@ -25,3 +25,7 @@ When you are writing code, make sure that you run the code after every interval 
 4. <h4>Always write comments</h4>
 
 Developers have a habit of writing comments. Writing comments is very useful as when you are writing code, through these comments you can know what function does a code do. It is very useful when you are sharing your code with someone as they will be able to understand the code by reading the comments.
+
+5. <h4>Do more pair programming</h4>
+
+Pair programming is one of the best ways to share knowledge between programmers. You can learn from more experienced developers, or you can help out more junior developers. Either way, it’s a good thing and helps you to stay focused.
