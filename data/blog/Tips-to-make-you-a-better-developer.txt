@@ -1,7 +1,7 @@
 ---
 title: Tips To Make You A Better Developer
 date: '2022-12-2'
-tags: ['Project', 'Journey']
+tags: ['Tips']
 images: ['/static/blogs/banner.jpeg']
 draft: false
 summary: "Here are a few tips to make you become a better developer!"
@@ -20,4 +20,8 @@ Making flash flashcards is the best to remember all the concepts that you have l
 
 3. <h4>Always test your code</h4>
 
-When you are writing code, make sure that you run the 
+When you are writing code, make sure that you run the code after every interval so that you can the errors you have made and correct them.
+
+4. <h4>Always write comments</h4>
+
+Developers have a habit of writing comments. Writing comments is very useful as when you are writing code, through these comments you can know what function does a code do. It is very useful when you are sharing your code with someone as they will be able to understand the code by reading the comments.
