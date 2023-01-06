@@ -19,28 +19,34 @@ Wait a minute, Mittens is having playing strength as 1? Yep, thats right! But pl
 
 ![picture](/static/blogs/mittens.jpg)
 
+According to IM Levy Rozman from GothamChess, he quoted:
+
+> Chess.com spawned one of the most evil beings ever created in chess, its a cat and its ELO is literally 1 and yet it can beat all of the strongest grandmasters in the world.
+
 I have played this bot many times, it plays too accurate for its appearence. My confidence was destroyed. I thought to quit chess (just joking!). Here a 2 games I played with Mittens
 Here I play as White. Check it out:
 
-<iframe id="9834067" allowtransparency="true" frameborder="0" style="width:100%;border:none;" src="//www.chess.com/emboard?id=9834067"></iframe><script>window.addEventListener("message",e=>{e['data']&&"9834067"===e['data']['id']&&document.getElementById(`${e['data']['id']}`)&&(document.getElementById(`${e['data']['id']}`).style.height=`${e['data']['frameHeight']+30}px`)});</script>
+![picture](/static/blogs/mittens1.gif)
 
-Mittens plays the Queen's Gambit. Also the way it talk is terrifying. Here are a few quotes said by Mittens while playing:
+Mittens plays the Queen's Gambit. Also the way it talk is terrifying.
 
-Here is the other game I play as Black:
+Here is the other game I play as Black. Mittens plays the Queen's Gambit.:
 
-<iframe id="9834095" allowtransparency="true" frameborder="0" style="width:100%;border:none;" src="//www.chess.com/emboard?id=9834095"></iframe><script>window.addEventListener("message",e=>{e['data']&&"9834095"===e['data']['id']&&document.getElementById(`${e['data']['id']}`)&&(document.getElementById(`${e['data']['id']}`).style.height=`${e['data']['frameHeight']+30}px`)});</script>
+![picture](/static/blogs/mittens2.gif)
+
+Here are a few quotes said by Mittens while playing:
 
 > Meow. I am become Mittens, the destroyer of kings. Hehehe.
 
-NO. You are not. I am.
+NO. You are not. I am and my older brother is. My older brother is Stockfish.
 
 > *ominously* All chess players eventually crumble under my mighty paws…I mean, meow! Hehehe.
 
-Who wrote this? 
+Who wrote this?
 
 > *Knocks queen onto the floor* Your queen is gone. Hehehehe.
 
-Yours is also gone. (First game above)
+Yours is also gone. (Second game above)
 
 Here are quotes said by other cat bots:
 
@@ -72,17 +78,7 @@ Thats how we feel when we lose at chess.
 Other cat bots play normally. I was able to defeat Angry Cat (1000 ELO) and Mr. Grumpers (1200 ELO) easily. If you are a Chess.com user, you would have known that Chess.com bots are very easy to defeat. Me being a 600 ELO player, defeated Emir 3 times who is a bot of 1000 ELO. This is the first bot which is UNBEATABLE! Even Grandmasters where not being able to defeat it.
 But the question is CAN MITTENS DEFEAT STOCKFISH 15?
 
-Well according to the video below made by GothamChess (IM Levy Rozman) Stockfish defeated Mittens while as both White and Black. The game was nuts! You should see the video given below:
-
-<iframe
-    width="640"
-    height="480"
-    src="https://www.youtube.com/watch?v=hH3zCpRDaIA"
-    frameborder="0"
-    allow="autoplay; encrypted-media"
-    allowfullscreen
->
-</iframe>
+Well according to the [video](https://www.youtube.com/watch?v=hH3zCpRDaIA) below made by GothamChess (IM Levy Rozman) Stockfish defeated Mittens while as both White and Black. The game was nuts!
 
 I literally bowed down to Stockfish after watching this video. Amazing match!
 ALL HAIL THE KING OF CHESS ENGINES STOCKFISH!
