@@ -17,7 +17,7 @@ Hello everyone, and a very Happy New Year! 2022 was the year of cats.  cat memes
 
 Wait a minute, Mittens is having playing strength as 1? Yep, thats right! But please, don't judge a book by its cover. Mittens might look weak but it is the most aggressive chess bot ever made by Chess.com. If you go to Chess.com you will see that Mittens looks like this:
 
-![picture](/static/blogs/mittens.jpg)
+![picture](/static/blogs/mittens.png)
 
 According to IM Levy Rozman from GothamChess, he quoted:
 
