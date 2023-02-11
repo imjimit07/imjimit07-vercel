@@ -1,7 +1,7 @@
 ---
 title: Is ChatGPT Good Or Bad?
 date: '2023-2-11'
-tags: ['Tips']
+tags: ['AI']
 images: ['/static/blogs/chatgpt.jpeg']
 draft: false
 summary: "ChatGPT's advantages and disadvantages"
