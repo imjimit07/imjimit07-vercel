@@ -1,0 +1,27 @@
+---
+title: Fake Data Generator
+date: '2022-12-26'
+draft: false
+summary: Generate Fake Data
+images: []
+layout: PostSimple
+tags: []
+---
+
+# Steps
+
+1. Install [Python](https://www.python.org/downloads/)
+2. Open a new Python file and paste the code given below.
+3. Save the file.
+4. Run the file and download the songs you want!
+
+```py showLineNumbers
+from faker import Faker
+fake = Faker()
+name=fake.name()
+print(name)
+address=fake.address()
+print(address)
+text=fake.text()
+print(text)
+```
