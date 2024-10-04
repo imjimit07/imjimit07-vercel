@@ -6,7 +6,7 @@ occupation: Student and a Competitive Developer, Chess Player and Keyboardist
 company: JSS Private School
 email: imjimit07@gmail.com
 twitter: https://twitter.com/imjimit07
-linkedin: https://www.linkedin.com
+linkedin: https://www.linkedin.com/in/jimit-patel-7ab025331/
 github: https://github.com/imjimit07
 ---
 

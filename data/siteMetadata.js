@@ -16,7 +16,7 @@ const siteMetadata = {
   twitter: 'https://twitter.com/imjimit07',
   facebook: 'https://facebook.com',
   youtube: 'https://www.youtube.com/@imjimit07',
-  linkedin: 'https://www.linkedin.com',
+  linkedin: 'https://www.linkedin.com/in/jimit-patel-7ab025331/',
   locale: 'en-US',
   analytics: {
     // If you want to use an analytics provider you have to add it to the
