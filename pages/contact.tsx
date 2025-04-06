@@ -47,7 +47,7 @@ function Contact(): React.ReactElement {
                 animationDuration={2000}
                 color={randomColor}
               >
-                <a href="mailto:imjimit07@gmail.com">email me!</a>
+                <a href="mailto:jimit0907@gmail.com">email me!</a>
               </RoughNotation>
             </span>
           </p>
