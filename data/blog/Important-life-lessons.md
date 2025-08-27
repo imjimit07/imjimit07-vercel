@@ -2,7 +2,7 @@
 title: Lessons that I learned in my Life
 date: '2025-8-27'
 tags: ['Personal']
-images: ['/static/blogs/chatgpt.jpeg']
+images: ['/static/blogs/life.jpg']
 draft: false
 summary: "Lessons I had learn't during my High School Life"
 authors: ['default']
