@@ -10,7 +10,7 @@ authors: ['default']
 
 High School life is one of the most important part of our life when it involves an student studying in an **Indian curriculum**. When that part of your life is over and you are in college, some call that life good and many call it bad. When you study in a education system that requires you to rote knowledge from tons of books rather understanding its use in real life situations and applying practically, you realize how far behind you are compared to other students who study in a different education system.
 
-I, Jimit Patel, being a high school Science student, personally think that high school is one of the most challenging part of an Indian student's life. This part of your life will most affect your future when it comes to getting a good college, a job, salary, etc.
+I, Jimit Patel, being a high school Science student, personally think that high school is one of the most challenging part of an Indian student's life. This part of your life will mostly affect your future when it comes to getting a good college, a job, salary, etc.
 
 When you start high school, in the first few weeks, you realize that the techniques that you used to study subjects in middle school don't apply the same way in high school. In Grade 9 and Grade 10, I realized that the Mathematics taught in Grade 8 was nothing compared to Grade 9 and Grade 10. Problems became more complex and required more time to think rather than calculating the actual answer.
 
