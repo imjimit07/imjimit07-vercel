@@ -8,7 +8,7 @@ summary: "Can Mittens defeat Stockfish?"
 authors: ['default']
 ---
 
-Hello everyone, and a very Happy New Year! 2022 was the year of cats.  cat memes that went viral such as Scaredy Cat (The picture given above). These cats have now come to Chess.com Last year people madeas bots to play chess. They had released 5 cat bots for playing:
+Hello everyone, and a very Happy New Year! 2022 was the year of cats. Cat memes that went viral such as Scaredy Cat (The picture given above). These cats have now come to Chess.com Last year people made bots to play chess. They had released 5 cat bots for playing:
 1. Scaredy Cat (800)
 2. Angry Cat (1000)
 3. Mr. Grumpers (1200)
