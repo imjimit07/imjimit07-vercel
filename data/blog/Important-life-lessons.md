@@ -34,7 +34,7 @@ But when I saw the JEE topper, I feel sorry for him. If you look at the behaviou
 
 I had started watching Formula 1 in 2018. Max Verstappen and late Niki Lauda are my role models. Max Verstappen's childhood and my childhood had a lot of similarities. Both of us had a strict upbringing. Whether it was in racing or studying JEE. In 2024, I saw a movie called *Rush* which was the story of the rivalry of Niki Lauda and James Hunt. From that movie, I heard an important quote by Niki:
 
-> "A wise man learns more from his enemies than a fool from his friends....People always think of us as rivals. But he was among the very few I liked, and even fewer that I respected. He remains the only person I envied."
+> A wise man learns more from his enemies than a fool from his friends....People always think of us as rivals. But he was among the very few I liked, and even fewer that I respected. He remains the only person I envied.
 
 I would like inform the reader that *sometimes life cannot go the way you expect*. Many students dream of going to IIT or AIMS, but only a *handful* are able to get a seat into these colleges. That is why it is important to have contact with your family but also important to study. You shouldn't go away from your family to study for an entire day that will only get you a single sheet of paper, that is, the marks.
 
