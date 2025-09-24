@@ -36,22 +36,16 @@ export const projects: Project[] = [
     title: 'HTML Calculator',
     slug: 'htmlcalc',
     banner: '/static/projects/HTML Calculator/banner.png',
-    website: 'https://replit.com/@Imjimit07/HTML-Calculator',
+    website: 'https://html-calc.netlify.app/',
     description:
       'This scientific calculator can solve complex equations, show graphs and can do math fuctions using python!',
-    shortDescription:
-      'Scientific Calculator made in HTML!',
-    repository: 'https://github.com/karanpratapsingh/HyperTrade',
-    stack: [
-      Stack.python,
-      Stack.html,
-    ],
+    shortDescription: 'Scientific Calculator made in HTML!',
+    repository: 'https://github.com/imjimit07/HTML-Calculator',
+    stack: [Stack.python, Stack.html],
     dimensions: [360, 640],
-    screenshots: [
-      '/static/projects/HTML Calculator/banner.png',
-    ],
+    screenshots: ['/static/projects/HTML Calculator/banner.png'],
     deployment: {
-      web: 'https://html-calculator.imjimit07.repl.co/',
+      web: 'https://html-calc.netlify.app/',
     },
     subProjects: [],
   },
