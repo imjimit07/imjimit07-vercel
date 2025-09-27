@@ -12,6 +12,8 @@ export enum Stack {
 
   // Tools
   docker,
+  opencv,
+  machineLearning,
 }
 
 export const WorkStack = [
@@ -20,6 +22,9 @@ export const WorkStack = [
   Stack.html,
   Stack.docker,
   Stack.reactnative,
+  Stack.opencv,
+  Stack.machineLearning,
+  Stack.javascript,
 ];
 
 type StackInfoMap = {
@@ -51,5 +56,13 @@ export const StackInfo: Record<Stack, StackInfoMap> = {
   [Stack.typescript]: {
     value: 'Typescript',
     color: Colors.typescript,
+  },
+  [Stack.opencv]: {
+    value: 'OpenCV',
+    color: Colors.opencv,
+  },
+  [Stack.machineLearning]: {
+    value: 'Machine Learning',
+    color: Colors.machinelearning,
   },
 };

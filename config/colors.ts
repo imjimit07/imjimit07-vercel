@@ -21,7 +21,6 @@ export const Colors = {
   twitter: '#1DA1F2',
   youtube: '#FF0000',
   email: '#D44638',
-  buymeacoffee: '#FFDD00',
   reddit: '#ff4500',
   facebook: '#1877f2',
 
@@ -37,4 +36,6 @@ export const Colors = {
   resume: '#EEEBFF',
   opensource: '#26BE00',
   tutorial: '#4dd0e1',
+  machinelearning: '#FF6F00',
+  opencv: '#2D2D2D',
 };
