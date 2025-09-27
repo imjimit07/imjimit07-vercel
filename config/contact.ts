@@ -4,7 +4,6 @@ export enum ContactType {
   twitter = 'twitter',
   youtube = 'youtube',
   email = 'email',
-  buymeacoffee = 'buymeacoffee',
 }
 
 export interface Contact {
@@ -24,6 +23,5 @@ export const contact: Contact = {
     twitter: 'https://twitter.com/imjimit07',
     youtube: 'https://www.youtube.com/@imjimit07',
     email: 'mailto:imjimit07@gmail.com',
-    buymeacoffee: 'https://www.buymeacoffee.com',
   },
 };
