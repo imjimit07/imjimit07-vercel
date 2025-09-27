@@ -42,7 +42,7 @@ function Banner(props: BannerProps): React.ReactElement {
             animationDuration={2000}
             color={contactColor}
           >
-            contact me
+            <a href='mailto:jimit0907@gmail.com'>contact me</a>
           </RoughNotation>
         </Link>
       </p>

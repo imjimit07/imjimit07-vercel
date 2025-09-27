@@ -22,6 +22,6 @@ export const contact: Contact = {
     linkedin: 'https://www.linkedin.com/in/jimit-patel-7ab025331/',
     twitter: 'https://twitter.com/imjimit07',
     youtube: 'https://www.youtube.com/@imjimit07',
-    email: 'mailto:imjimit07@gmail.com',
+    email: 'mailto:jimit0907@gmail.com',
   },
 };
