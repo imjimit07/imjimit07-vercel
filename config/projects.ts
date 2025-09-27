@@ -52,7 +52,7 @@ export const projects: Project[] = [
   {
     title: 'Document Scanner',
     slug: 'document-scanner',
-    banner: '/static/projects/Document Scanner/banner.png',
+    banner: '/static/projects/Document Scanner/Banner.png',
     website: 'https://github.com/imjimit07/document-scanner',
     description:
       'This is a document scanner app made using python and opencv. It can scan documents, images and can also detect edges of the document.',
