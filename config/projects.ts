@@ -60,7 +60,7 @@ export const projects: Project[] = [
     repository: 'https://github.com/imjimit07/document-scanner',
     stack: [Stack.python, Stack.opencv],
     dimensions: [832, 802],
-    screenshots: ['/static/projects/Document Scanner/banner.png'],
+    screenshots: ['/static/projects/Document Scanner/Banner.png'],
     deployment: {
       web: 'https://github.com/imjimit07/document-scanner',
     },
