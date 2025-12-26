@@ -8,7 +8,7 @@ import { PostFrontMatter } from 'types/PostFrontMatter';
 import { Toc } from 'types/Toc';
 import getAllFilesRecursively from './utils/files';
 // Remark packages
-import remarkFootnotes from 'remark-footnotes';
+
 import remarkGfm from 'remark-gfm';
 import remarkMath from 'remark-math';
 import remarkCodeTitles from './remark-code-title';
@@ -19,7 +19,7 @@ import remarkTocHeadings from './remark-toc-headings';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import rehypeCitation from 'rehype-citation';
 import rehypeKatex from 'rehype-katex';
-import rehypePresetMinify from 'rehype-preset-minify';
+
 import rehypePrismPlus from 'rehype-prism-plus';
 import rehypeSlug from 'rehype-slug';
 
@@ -78,7 +78,7 @@ export async function getFileBySlug<T>(
     source,
     // mdx imports can be automatically source from the components directory
     cwd: path.join(root, 'components'),
-    xdmOptions(options, frontmatter) {
+    mdxOptions(options, frontmatter) {
       // this is the recommended way to add custom remark/rehype plugins:
       // The syntax might look weird, but it protects you in case we add/remove
       // plugins in the future.
@@ -88,7 +88,7 @@ export async function getFileBySlug<T>(
         [remarkTocHeadings, { exportRef: toc }],
         remarkGfm,
         remarkCodeTitles,
-        [remarkFootnotes, { inlineNotes: true }],
+
         remarkMath,
         remarkImgToJsx,
       ];
@@ -99,7 +99,7 @@ export async function getFileBySlug<T>(
         rehypeKatex,
         [rehypeCitation, { path: path.join(root, 'data') }],
         [rehypePrismPlus, { ignoreMissing: true }],
-        rehypePresetMinify,
+
       ];
       return options;
     },
