@@ -52,7 +52,6 @@
     "unist-util-visit": "^4.0.0"
   },
   "devDependencies": {
-    "@types/unist": "3.0.3",
     "@next/bundle-analyzer": "12.0.9",
     "@svgr/webpack": "^6.1.2",
     "@types/node": "25.0.3",

@@ -1,4 +1,4 @@
-/* eslint-disable react/display-name */
+ 
 import React, { useMemo } from 'react';
 // 1. Remove ComponentMap from here
 import { getMDXComponent } from 'mdx-bundler/client';

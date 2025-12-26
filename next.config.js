@@ -58,14 +58,11 @@ const securityHeaders = [
 module.exports = withBundleAnalyzer({
   reactStrictMode: true,
   pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx'],
+  eslint: {
+    dirs: ['pages', 'components', 'lib', 'layouts', 'scripts', 'config'],
+  },
   images: {
-    remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: 'firebasestorage.googleapis.com',
-        pathname: '/**',
-      },
-    ],
+    domains: ['firebasestorage.googleapis.com'],
   },
   async headers() {
     return [
