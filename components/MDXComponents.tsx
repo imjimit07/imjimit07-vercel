@@ -16,8 +16,13 @@ const Wrapper: React.FC<{ layout: string; children: React.ReactNode }> = ({
   layout,
   ...rest
 }) => {
-  const Layout = require(`../layouts/${layout}`).default;
-  return <Layout {...rest} />;
+  // Dynamically import the layout component
+  const Layout = React.lazy(() => import(`../layouts/${layout}`));
+  return (
+    <React.Suspense fallback={<div>Loading...</div>}>
+      <Layout {...rest} />
+    </React.Suspense>
+  );
 };
 
 // 3. Apply the new type here
