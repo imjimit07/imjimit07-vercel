@@ -66,7 +66,7 @@ export default function Project({
             src={screenshot}
             height={height}
             width={width}
-            objectFit='cover'
+            objectFit='contain'
             alt=''
           />
         </div>
@@ -99,7 +99,7 @@ export default function Project({
         description={shortDescription || description}
         imageUrl={banner}
       />
-      <H1 className='lg:text-5x mb-4 text-3xl font-bold dark:text-white'>
+      <H1 className='lg:text-5x mb-4 mt-8 text-3xl font-bold dark:text-white'>
         {title}
       </H1>
       <p className='mb-4 font-light'>{description}</p>

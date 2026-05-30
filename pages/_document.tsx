@@ -51,6 +51,10 @@ class MyDocument extends Document {
           <meta name='msapplication-TileColor' content='#000000' />
           <meta name='theme-color' content='#000000' />
           <link rel='alternate' type='application/rss+xml' href='/feed.xml' />
+          <link
+            rel='stylesheet'
+            href='https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;700&display=swap'
+          />
         </Head>
         <body className='bg-white text-black antialiased dark:bg-gray-900 dark:text-white'>
           <Main />

@@ -4,7 +4,7 @@ date: '2023-4-7'
 tags: ['Software']
 images: ['/static/blogs/software.png']
 draft: false
-summary: "How agile methodologies can be used to enhance software architecture"
+summary: 'How agile methodologies can be used to enhance software architecture'
 authors: ['default']
 ---
 

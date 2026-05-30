@@ -4,11 +4,12 @@ date: '2023-1-6'
 tags: ['Tips']
 images: ['/static/blogs/scaredycat.jpg']
 draft: false
-summary: "Can Mittens defeat Stockfish?"
+summary: 'Can Mittens defeat Stockfish?'
 authors: ['default']
 ---
 
 Hello everyone, and a very Happy New Year! 2022 was the year of cats. Cat memes that went viral such as Scaredy Cat (The picture given above). These cats have now come to Chess.com Last year people made bots to play chess. They had released 5 cat bots for playing:
+
 1. Scaredy Cat (800)
 2. Angry Cat (1000)
 3. Mr. Grumpers (1200)
@@ -40,11 +41,11 @@ Here are a few quotes said by Mittens while playing:
 
 NO. You are not. I am and my older brother is. My older brother is Stockfish.
 
-> *ominously* All chess players eventually crumble under my mighty paws…I mean, meow! Hehehe.
+> _ominously_ All chess players eventually crumble under my mighty paws…I mean, meow! Hehehe.
 
 Who wrote this?
 
-> *Knocks queen onto the floor* Your queen is gone. Hehehehe.
+> _Knocks queen onto the floor_ Your queen is gone. Hehehehe.
 
 Yours is also gone. (Second game above)
 
@@ -59,7 +60,7 @@ No. But I have some milk if you want.
 
 2. Angry Cat (1000)
 
-> *hisses* Chess bad, relaxing good! Meow.
+> _hisses_ Chess bad, relaxing good! Meow.
 
 Well I agree with you.
 
@@ -71,7 +72,7 @@ Mr. Grumpers more like Mr. Grumpers the Grinch LOL. You sound like my sister.
 
 4. Catspurrov (1400)
 
-> *Hissing Noises*
+> _Hissing Noises_
 
 Thats how we feel when we lose at chess.
 

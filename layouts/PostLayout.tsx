@@ -1,7 +1,5 @@
-import Comments from '@/components/comments';
 import Link from '@/components/Link';
 import PageTitle from '@/components/PageTitle';
-import ScrollTopAndComment from '@/components/ScrollTopAndComment';
 import SectionContainer from '@/components/SectionContainer';
 import { BlogSEO } from '@/components/SEO';
 import Share from '@/components/Share';
@@ -55,7 +53,6 @@ export default function PostLayout({
   return (
     <SectionContainer>
       <BlogSEO url={url} authorDetails={authorDetails} {...frontMatter} />
-      <ScrollTopAndComment />
       <article className='fade-in'>
         <div className='xl:divide-y xl:divide-gray-100 xl:dark:divide-gray-800'>
           <header className='pt-6 xl:pb-6'>
@@ -148,7 +145,6 @@ export default function PostLayout({
                 {` • `}
                 <Link href={editUrl(fileName)}>{'View on GitHub'}</Link>
               </div>
-              <Comments frontMatter={frontMatter} />
             </div>
             <footer>
               <div className='xl:sticky xl:top-32'>

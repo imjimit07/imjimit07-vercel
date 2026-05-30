@@ -29,7 +29,7 @@ module.exports = {
         14: '3.5rem',
       },
       fontFamily: {
-        sans: ['Open Sans', ...defaultTheme.fontFamily.sans],
+        sans: ['IBM Plex Sans', ...defaultTheme.fontFamily.sans],
       },
       colors: {
         primary: colors.cyan,
@@ -176,6 +176,3 @@ module.exports = {
     require('@tailwindcss/line-clamp'),
   ],
 };
-
-
-

@@ -64,6 +64,5 @@ const siteMetadata = require('../data/siteMetadata');
     parser: 'html',
   });
 
-   
   fs.writeFileSync('public/sitemap.xml', formatted);
 })();

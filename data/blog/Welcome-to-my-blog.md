@@ -4,7 +4,7 @@ date: '2022-12-23'
 tags: ['Project', 'Journey']
 images: ['/static/blogs/banner.jpeg']
 draft: false
-summary: "After finishing a project, it was time to start a new one. But where do I begin? What do I build? These are the questions I asked myself. This post is about my journey in creating a new project and the steps I took to get started."
+summary: 'After finishing a project, it was time to start a new one. But where do I begin? What do I build? These are the questions I asked myself. This post is about my journey in creating a new project and the steps I took to get started.'
 authors: ['default']
 ---
 
@@ -31,7 +31,7 @@ Conclusion why I start this blog:
 1. I want to get better at writing.
 2. I want to teach myself about what's I learn
 3. Making a Good Habit. To be a better man. (Not a lyrics ♫)
-There are blog posts that inspired me included:
+   There are blog posts that inspired me included:
 
 [Learn In Public](https://www.swyx.io/learn-in-public/)
 
@@ -52,7 +52,7 @@ Currently, I take a challenge [#100DaysOfCode](https://twitter.com/hashtag/100Da
 - <strong>Aviation</strong> - Even though I am not a professtional aviation critic, I want to share the things I i have experienced while flying!
 - <strong>Data Structure & Algorithms</strong> - I think I lack of knowledge, I need to learn this too.
 - <strong>AI / Machine Learning</strong> - This is also cool, but it's very difficult for me, a lot of topics e.g. Math, Algorithm, Programming, just to know about the basics is ok.
-No deadline, no pressure, some maybe I can learn in next week, in a year or maybe 5 years later. I can't promise anything, I just focused on learning. This is my learning journey, I learn from other people, I teach to myself, I practice, learn from mistakes and share my knowledge/experience with others.
+  No deadline, no pressure, some maybe I can learn in next week, in a year or maybe 5 years later. I can't promise anything, I just focused on learning. This is my learning journey, I learn from other people, I teach to myself, I practice, learn from mistakes and share my knowledge/experience with others.
 
 Lastly, I just wanted to say <strong>THANK YOU</strong> for just being here and reading my first blog post. You can leave me any ideas or suggestions that you want to see in this blog.
 

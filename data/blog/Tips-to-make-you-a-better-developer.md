@@ -4,7 +4,7 @@ date: '2022-12-24'
 tags: ['Tips']
 images: ['/static/blogs/code.png']
 draft: false
-summary: "Here are a few tips to make you become a better developer!"
+summary: 'Here are a few tips to make you become a better developer!'
 authors: ['default']
 ---
 

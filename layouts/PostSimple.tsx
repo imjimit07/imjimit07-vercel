@@ -4,8 +4,7 @@ import SectionContainer from '@/components/SectionContainer';
 import { BlogSEO } from '@/components/SEO';
 import siteMetadata from '@/data/siteMetadata';
 import formatDate from '@/lib/utils/formatDate';
-import Comments from '@/components/comments';
-import ScrollTopAndComment from '@/components/ScrollTopAndComment';
+
 import { ReactNode } from 'react';
 import { PostFrontMatter } from 'types/PostFrontMatter';
 
@@ -27,7 +26,6 @@ export default function PostLayout({
   return (
     <SectionContainer>
       <BlogSEO url={`${siteMetadata.siteUrl}/blog/${slug}`} {...frontMatter} />
-      <ScrollTopAndComment />
       <article className='fade-in'>
         <div>
           <header>
@@ -54,13 +52,12 @@ export default function PostLayout({
                 {children}
               </div>
             </div>
-            <Comments frontMatter={frontMatter} />
             <footer>
               <div className='flex flex-col text-sm font-medium sm:flex-row sm:justify-between sm:text-base'>
                 {next && (
                   <div className='pt-4 xl:pt-8'>
                     <Link
-                      href={`/snippets/${next.slug}`}
+                      href={`/blog/${next.slug}`}
                       className='text-primary-500 hover:text-primary-600 dark:hover:text-primary-400'
                     >
                       &larr; {next.title}
@@ -70,7 +67,7 @@ export default function PostLayout({
                 {prev && (
                   <div className='pt-4 xl:pt-8'>
                     <Link
-                      href={`/snippets/${prev.slug}`}
+                      href={`/blog/${prev.slug}`}
                       className='text-primary-500 hover:text-primary-600 dark:hover:text-primary-400'
                     >
                       {prev.title} &rarr;

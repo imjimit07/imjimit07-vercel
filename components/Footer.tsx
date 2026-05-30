@@ -1,4 +1,3 @@
-import SocialIcons from '@/components/SocialIcons';
 import { memo } from 'react';
 
 function Footer(): React.ReactElement {
@@ -6,10 +5,7 @@ function Footer(): React.ReactElement {
 
   return (
     <div className='mt-4 flex flex-col items-center py-8 font-light dark:text-white lg:py-8'>
-      <SocialIcons />
-      <span className='mt-4 text-xs font-light lg:mt-8'>
-        &copy; {year} Jimit Patel
-      </span>
+      <span className='text-xs font-light'>&copy; {year} Jimit Patel</span>
     </div>
   );
 }

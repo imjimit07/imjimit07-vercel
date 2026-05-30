@@ -34,7 +34,10 @@ function Banner(props: BannerProps): React.ReactElement {
           </RoughNotation>
         </Link>
         or
-        <Link className='ml-2 font-normal text-black' href='/contact'>
+        <Link
+          className='ml-2 font-normal text-black'
+          href='mailto:jimit0907@gmail.com'
+        >
           <RoughNotation
             show
             type='highlight'
@@ -42,7 +45,7 @@ function Banner(props: BannerProps): React.ReactElement {
             animationDuration={2000}
             color={contactColor}
           >
-            <a href='mailto:jimit0907@gmail.com'>contact me</a>
+            contact me
           </RoughNotation>
         </Link>
       </p>

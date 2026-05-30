@@ -99,7 +99,6 @@ export async function getFileBySlug<T>(
         rehypeKatex,
         [rehypeCitation, { path: path.join(root, 'data') }],
         [rehypePrismPlus, { ignoreMissing: true }],
-
       ];
       return options;
     },
