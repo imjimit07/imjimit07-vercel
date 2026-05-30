@@ -1,4 +1,4 @@
-import siteMetadata from '@/data/siteMetadata';
+import * as siteMetadata from '@/data/siteMetadata';
 import dynamic from 'next/dynamic';
 import { PostFrontMatter } from 'types/PostFrontMatter';
 

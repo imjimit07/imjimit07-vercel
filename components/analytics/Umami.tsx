@@ -1,6 +1,6 @@
 import Script from 'next/script';
 
-import siteMetadata from '@/data/siteMetadata';
+import * as siteMetadata from '@/data/siteMetadata';
 
 const UmamiScript = () => {
   return (

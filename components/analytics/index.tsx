@@ -3,7 +3,7 @@ import Plausible from './Plausible';
 import SimpleAnalytics from './SimpleAnalytics';
 import Umami from './Umami';
 import VercelAnalytics from './VercelAnalytics';
-import siteMetadata from '@/data/siteMetadata';
+import * as siteMetadata from '@/data/siteMetadata';
 
 declare global {
   interface Window {

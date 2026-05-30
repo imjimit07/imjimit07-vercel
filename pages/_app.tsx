@@ -18,7 +18,7 @@ import Analytics from '@/components/analytics';
 import { ClientReload } from '@/components/ClientReload';
 import LayoutWrapper from '@/components/LayoutWrapper';
 import Preloader from '@/components/Preloader';
-import siteMetadata from '@/data/siteMetadata';
+import * as siteMetadata from '@/data/siteMetadata';
 
 import { GeistProvider } from '@geist-ui/core';
 

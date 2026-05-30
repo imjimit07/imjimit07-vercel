@@ -66,7 +66,7 @@ export default function Project({
             src={screenshot}
             height={height}
             width={width}
-            objectFit='contain'
+            style={{ objectFit: 'contain' }}
             alt=''
           />
         </div>
