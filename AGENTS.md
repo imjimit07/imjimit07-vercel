@@ -6,7 +6,7 @@
 | ----------------- | ------------------------------------------------------------------------ |
 | `npm run dev`     | Standard Next.js dev server                                              |
 | `npm run start`   | Dev server with file-watch + socket HMR on `./data` (sets `SOCKET=true`) |
-| `npm run build`   | `next build` then `node ./scripts/generate-sitemap`                      |
+| `npm run build`   | `next build --webpack` then `node ./scripts/generate-sitemap`            |
 | `npm run serve`   | `next start` (production server)                                         |
 | `npm run preview` | `npm run build && npm run serve`                                         |
 | `npm run lint`    | **Formats** everything via `prettier --write .` (not a check)            |
@@ -24,9 +24,9 @@ No test suite is configured.
 - **Framework**: Next.js 16, TypeScript, React 19
 - **Styling**: Tailwind CSS v3 + `@geist-ui/core` (theme-aware) + prism.css for code highlighting
 - **Content**: MDX/MD files in `data/` (blog/, authors/, snippets/) → rendered via `mdx-bundler` + remark/rehype pipeline
-- **Routing**: Dynamic catch-all `pages/blog/[...slug].tsx` for blog posts; static pages for /, /about, /projects, /tags, /snippets
+- **Routing**: Dynamic catch-all `pages/blog/[...slug].tsx` for blog posts; `pages/tags/[tag].tsx` and `pages/projects/[slug].tsx` for detail pages; static pages for /, /about, /tags, /snippets
 - **Pages support**: `.ts`, `.tsx`, `.js`, `.jsx`, `.md`, `.mdx`
-- **Path aliases** (jsconfig/tsconfig): `@/components`, `@/data`, `@/layouts`, `@/lib`, `@/css`, `@/config`
+- **Path aliases** (tsconfig paths): `@/components/*`, `@/data/*`, `@/layouts/*`, `@/lib/*`, `@/css/*`
 - **Production optimization**: React → Preact swap in client production build (`next.config.js:94-101`)
 - **Security**: CSP, HSTS, X-Frame-Options, etc. via `next.config.js` headers
 - **TypeScript**: `strict: false`, `allowJs: true`, `jsx: "react-jsx"`
@@ -39,11 +39,12 @@ No test suite is configured.
 - Authors: `data/authors/*.mdx`
 - Snippets: `data/snippets/**/*.mdx`
 - Site config: `data/siteMetadata.js`
-- App config (contact, projects): `config/`
+- App config (contact, projects, stack, colors): `config/`
 - Drafts: set `draft: true` in frontmatter (excluded from sitemap)
+- Available layouts: PostLayout, PostSimple, ListLayout, AuthorLayout (in `layouts/`)
 - Create new posts via `node scripts/compose.js` (interactive CLI)
 - Sitemap auto-generated on `npm run build` → `public/sitemap.xml`
-- RSS feed: `lib/generate-rss.ts` (outputs `public/feed.xml`)
+- RSS feed auto-generated via `lib/generate-rss.ts` during build → `public/feed.xml`
 
 ## Environment
 
@@ -56,9 +57,10 @@ Copy `.env.example` → `.env.local` for:
 
 ## Notable quirks
 
-- `npm run lint` **writes** formatted files — use `npx prettier --check .` to read-only check
-- No CI workflow, no tests
-- ESLint has many relaxed rules: `no-unused-vars` off, `react-hooks/exhaustive-deps` off, `@next/next/no-img-element` off
+- `npm run lint` **writes** formatted files — use `npx prettier --check .` for read-only check
+- No CI workflow, no tests, no typecheck script
+- Build uses `--webpack` flag (forces webpack over turbopack for production builds), but dev mode uses turbopack
+- `eslint-config-next` is installed but **not imported** in `eslint.config.js` (flat config). Many strict rules are disabled — see `eslint.config.js` for full list.
 - Dark mode: `class` strategy via `next-themes`
-- Comments: Giscus (configured, requires env vars), alternatives: utterances, Disqus
+- Comments: Giscus (configured, requires env vars); alternatives: utterances, Disqus
 - `.replit` and `replit.nix` legacy config present (not maintained)
