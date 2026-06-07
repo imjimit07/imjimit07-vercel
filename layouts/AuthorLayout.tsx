@@ -1,11 +1,11 @@
 import { Header } from '@/components/Form';
+import SocialIcons from '@/components/SocialIcons';
 import StackList from '@/components/list/StackList';
 import { PageSEO } from '@/components/SEO';
 import { useRandomColorPair } from '@/lib/hooks/useRandomColorPair';
 import { WorkStack } from 'config/stack';
 import Image from 'next/image';
 import { ReactNode } from 'react';
-import { RoughNotation } from 'react-rough-notation';
 import { AuthorFrontMatter } from 'types/AuthorFrontMatter';
 
 interface Props {
@@ -34,10 +34,24 @@ export default function AuthorLayout({ children, frontMatter }: Props) {
             <h3 className='pt-4 pb-2 text-2xl font-bold leading-8 tracking-tight'>
               {name}
             </h3>
-            <div className='font-medium text-gray-500 dark:text-gray-400'>
+            <div className='text-center font-medium text-gray-500 dark:text-gray-400'>
               {occupation}
             </div>
-            <div className='text-gray-500 dark:text-gray-400'>{company}</div>
+            <div className='text-center text-gray-500 dark:text-gray-400'>
+              {company}
+            </div>
+            <SocialIcons className='justify-center' />
+            {resume && (
+              <a
+                href={resume}
+                target='_blank'
+                rel='noopener noreferrer'
+                className='mt-4 inline-flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-medium text-white transition-opacity hover:opacity-80'
+                style={{ backgroundColor: resumeColor }}
+              >
+                Download CV
+              </a>
+            )}
           </div>
 
           <div className='prose max-w-none pt-8 pb-8 dark:prose-dark xl:col-span-2'>
