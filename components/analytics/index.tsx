@@ -3,6 +3,7 @@ import Plausible from './Plausible';
 import SimpleAnalytics from './SimpleAnalytics';
 import Umami from './Umami';
 import VercelAnalytics from './VercelAnalytics';
+import VercelSpeedInsights from './VercelSpeedInsights';
 import * as siteMetadata from '@/data/siteMetadata';
 
 declare global {
@@ -27,6 +28,7 @@ const Analytics = () => {
       {isProduction && siteMetadata.analytics.umamiWebsiteId && <Umami />}
       {isProduction && siteMetadata.analytics.googleAnalyticsId && <GA />}
       <VercelAnalytics />
+      <VercelSpeedInsights />
     </>
   );
 };
