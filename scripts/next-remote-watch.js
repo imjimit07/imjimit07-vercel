@@ -113,7 +113,14 @@ app.prepare().then(() => {
     // log message if present
     const msg = req.body.message;
     const color = req.body.color;
-    msg && console.log(color ? chalk[color](msg) : msg);
+    if (msg) {
+      const hasValidColorMethod =
+        typeof color === 'string' &&
+        Object.prototype.hasOwnProperty.call(chalk, color) &&
+        typeof chalk[color] === 'function';
+      const formattedMsg = hasValidColorMethod ? chalk[color](msg) : msg;
+      console.log(formattedMsg);
+    }
 
     // reload the nextjs app
     app.server.hotReloader.send('building');
