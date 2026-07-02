@@ -113,12 +113,22 @@ app.prepare().then(() => {
     // log message if present
     const msg = req.body.message;
     const color = req.body.color;
+    const allowedColorFormatters = {
+      red: chalk.red,
+      green: chalk.green,
+      yellow: chalk.yellow,
+      blue: chalk.blue,
+      magenta: chalk.magenta,
+      cyan: chalk.cyan,
+      white: chalk.white,
+      gray: chalk.gray,
+    };
     if (msg) {
       const hasValidColorMethod =
         typeof color === 'string' &&
-        Object.prototype.hasOwnProperty.call(chalk, color) &&
-        typeof chalk[color] === 'function';
-      const formattedMsg = hasValidColorMethod ? chalk[color](msg) : msg;
+        Object.prototype.hasOwnProperty.call(allowedColorFormatters, color);
+      const colorFormatter = hasValidColorMethod ? allowedColorFormatters[color] : null;
+      const formattedMsg = colorFormatter ? colorFormatter(msg) : msg;
       console.log(formattedMsg);
     }
 
