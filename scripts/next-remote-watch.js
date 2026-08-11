@@ -113,22 +113,38 @@ app.prepare().then(() => {
     // log message if present
     const msg = req.body.message;
     const color = req.body.color;
-    const allowedColorFormatters = {
-      red: chalk.red,
-      green: chalk.green,
-      yellow: chalk.yellow,
-      blue: chalk.blue,
-      magenta: chalk.magenta,
-      cyan: chalk.cyan,
-      white: chalk.white,
-      gray: chalk.gray,
-    };
     if (msg) {
-      const hasValidColorMethod =
-        typeof color === 'string' &&
-        Object.prototype.hasOwnProperty.call(allowedColorFormatters, color);
-      const colorFormatter = hasValidColorMethod ? allowedColorFormatters[color] : null;
-      const formattedMsg = colorFormatter ? colorFormatter(msg) : msg;
+      let formattedMsg = msg;
+      if (typeof color === 'string') {
+        switch (color) {
+          case 'red':
+            formattedMsg = chalk.red(msg);
+            break;
+          case 'green':
+            formattedMsg = chalk.green(msg);
+            break;
+          case 'yellow':
+            formattedMsg = chalk.yellow(msg);
+            break;
+          case 'blue':
+            formattedMsg = chalk.blue(msg);
+            break;
+          case 'magenta':
+            formattedMsg = chalk.magenta(msg);
+            break;
+          case 'cyan':
+            formattedMsg = chalk.cyan(msg);
+            break;
+          case 'white':
+            formattedMsg = chalk.white(msg);
+            break;
+          case 'gray':
+            formattedMsg = chalk.gray(msg);
+            break;
+          default:
+            formattedMsg = msg;
+        }
+      }
       console.log(formattedMsg);
     }
 
