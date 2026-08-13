@@ -22,13 +22,15 @@
 }
 
 .social-icons:last-child .icon {
-  @apply mr-0;
+  margin-right: 0;
 }
 
 .content {
-  @apply !pb-0;
+  padding-bottom: 0 !important;
 }
 
 .collapse .view .title {
-  @apply dark:text-white;
+  @media (prefers-color-scheme: dark) {
+    color: #fff; /* dark:text-white */
+  }
 }

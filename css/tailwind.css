@@ -3,19 +3,29 @@
 @tailwind utilities;
 
 .task-list-item::before {
-  @apply hidden;
+  display: none; /* hidden */
 }
 
 .task-list-item {
-  @apply list-none;
+  list-style: none; /* list-none */
 }
 
 .footnotes {
-  @apply mt-12 border-t border-gray-100 pt-8 dark:border-gray-800;
+  margin-top: 3rem; /* mt-12 */
+  border-top-width: 1px; /* border-t */
+  border-color: #f3f4f6; /* border-gray-100 */
+  padding-top: 2rem; /* pt-8 */
+}
+
+.footnotes {
+  @media (prefers-color-scheme: dark) {
+    border-color: #2d3748; /* dark:border-gray-800 */
+  }
 }
 
 .csl-entry {
-  @apply my-5;
+  margin-top: 1.25rem; /* my-5 */
+  margin-bottom: 1.25rem; /* my-5 */
 }
 
 /* https://stackoverflow.com/questions/61083813/how-to-avoid-internal-autofill-selected-style-to-be-applied */
