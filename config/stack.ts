@@ -67,7 +67,7 @@ export const StackInfo: Record<Stack, StackInfoMap> = {
     value: 'Machine Learning',
     color: Colors.machinelearning,
   },
-  [Stack.C]: {
+  [Stack.c]: {
     value: 'C/C++',
     color: Colors.c,
   },
