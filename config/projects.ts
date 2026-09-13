@@ -100,4 +100,21 @@ export const projects: Project[] = [
     },
     subProjects: [],
   },
+  {
+    title: 'Chess Engine',
+    slug: 'chess-engine',
+    banner: '/static/projects/Chess Engine/banner.jpg',
+    website: 'https://github.com/imjimit07/Chess-Engine',
+    description:
+      'A fully-featured UCI-compatible chess engine of ~2500 Elo ± 100 ELO estimated rating.',
+    shortDescription: 'A 2500 Elo Chess Engine',
+    repository: 'https://github.com/imjimit07/Chess-Engine',
+    stack: [Stack.c],
+    dimensions: [600, 1280],
+    screenshots: ['/static/projects/Chess Engine/banner.jpg'],
+    deployment: {
+      web: 'https://github.com/imjimit07/Chess-Engine',
+    },
+    subProjects: [],
+  },
 ];

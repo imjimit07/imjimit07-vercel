@@ -4,6 +4,7 @@ export const Colors = {
   typescript: '#234A84',
   javascript: '#F7DF1E',
   html: '#F06428',
+  c: '#5C8DB8',
 
   // Frontend
   web: '#2D2D2D',

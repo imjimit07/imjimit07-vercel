@@ -6,6 +6,7 @@ export enum Stack {
   javascript,
   python,
   html,
+  c,
 
   // Frontend
   reactnative,
@@ -25,6 +26,7 @@ export const WorkStack = [
   Stack.opencv,
   Stack.machineLearning,
   Stack.javascript,
+  Stack.c,
 ];
 
 type StackInfoMap = {
@@ -64,5 +66,9 @@ export const StackInfo: Record<Stack, StackInfoMap> = {
   [Stack.machineLearning]: {
     value: 'Machine Learning',
     color: Colors.machinelearning,
+  },
+  [Stack.C]: {
+    value: 'C/C++',
+    color: Colors.c,
   },
 };
