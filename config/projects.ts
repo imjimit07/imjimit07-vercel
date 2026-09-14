@@ -33,23 +33,6 @@ export interface Project {
 
 export const projects: Project[] = [
   {
-    title: 'HTML Calculator',
-    slug: 'html-calc',
-    banner: '/static/projects/HTML Calculator/banner.png',
-    website: 'https://html-calc.netlify.app/',
-    description:
-      'This scientific calculator can solve complex equations, show graphs and can do math fuctions using python!',
-    shortDescription: 'Scientific Calculator made in HTML!',
-    repository: 'https://github.com/imjimit07/HTML-Calculator',
-    stack: [Stack.python, Stack.html],
-    dimensions: [360, 640],
-    screenshots: ['/static/projects/HTML Calculator/banner.png'],
-    deployment: {
-      web: 'https://html-calc.netlify.app/',
-    },
-    subProjects: [],
-  },
-  {
     title: 'Document Scanner',
     slug: 'document-scanner',
     banner: '/static/projects/Document Scanner/Banner.png',
