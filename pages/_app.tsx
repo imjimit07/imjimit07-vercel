@@ -16,6 +16,7 @@ import Head from 'next/head';
 
 import Analytics from '@/components/analytics';
 import { ClientReload } from '@/components/ClientReload';
+import CustomCursor from '@/components/CustomCursor';
 import LayoutWrapper from '@/components/LayoutWrapper';
 import Preloader from '@/components/Preloader';
 import * as siteMetadata from '@/data/siteMetadata';
@@ -34,6 +35,7 @@ export default function App({ Component, pageProps }: AppProps) {
       {isDevelopment && isSocket && <ClientReload />}
       <Analytics />
       <Preloader />
+      <CustomCursor />
       <GeistProviderWithTheme>
         <LayoutWrapper>
           <Component {...pageProps} />

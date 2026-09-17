@@ -4,6 +4,7 @@ import { getFileBySlug } from '@/lib/mdx';
 import { GetStaticProps, InferGetStaticPropsType } from 'next';
 import dynamic from 'next/dynamic';
 import { AuthorFrontMatter } from 'types/AuthorFrontMatter';
+import InteractiveGridBackground from '@/components/InteractiveGridBackground';
 
 // TODO: Direct share functionality.
 // TODO: Switch geist-ui with something simple.
@@ -31,6 +32,14 @@ export default function Home({
       <PageSEO
         title={siteMetadata.title}
         description={siteMetadata.description}
+      />
+      <InteractiveGridBackground
+        cellSize={50}
+        glowDuration={1000}
+        maxIntensity={0.8}
+        trailLength={5}
+        idleAnimationInterval={150}
+        fadeOverlay={true}
       />
       <Banner frontMatter={author} />
     </>

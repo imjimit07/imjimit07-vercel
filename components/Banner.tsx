@@ -1,6 +1,6 @@
 import Link from '@/components/Link';
 import { useRandomColorPair } from '@/lib/hooks/useRandomColorPair';
-import { memo } from 'react';
+import { memo, useEffect, useState } from 'react';
 import { RoughNotation } from 'react-rough-notation';
 import { AuthorFrontMatter } from 'types/AuthorFrontMatter';
 
@@ -11,6 +11,16 @@ interface BannerProps {
 function Banner(props: BannerProps): React.ReactElement {
   const { frontMatter } = props;
   const [aboutColor, contactColor] = useRandomColorPair();
+  const [showAnnotations, setShowAnnotations] = useState(false);
+
+  useEffect(() => {
+    // Wait for preloader to finish (1500ms duration + 300ms delay = 1800ms)
+    const timer = setTimeout(() => {
+      setShowAnnotations(true);
+    }, 1800);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
     <div className='fade-in banner flex flex-1 flex-col justify-center px-6 py-10 dark:text-white lg:px-10'>
@@ -22,10 +32,13 @@ function Banner(props: BannerProps): React.ReactElement {
       </p>
       <p className='font-light lg:text-xl'>
         Read more
-        <Link className='ml-2 mr-2 font-normal text-black' href='/about'>
+        <Link
+          className='ml-2 mr-2 font-normal text-white dark:text-white'
+          href='/about'
+        >
           <RoughNotation
-            show
-            type='highlight'
+            show={showAnnotations}
+            type='underline'
             animationDelay={250}
             animationDuration={2000}
             color={aboutColor}
@@ -35,13 +48,13 @@ function Banner(props: BannerProps): React.ReactElement {
         </Link>
         or
         <Link
-          className='ml-2 font-normal text-black'
+          className='ml-2 font-normal text-white dark:text-white'
           href='mailto:jimit0907@gmail.com'
         >
           <RoughNotation
-            show
-            type='highlight'
-            animationDelay={250}
+            show={showAnnotations}
+            type='underline'
+            animationDelay={500}
             animationDuration={2000}
             color={contactColor}
           >

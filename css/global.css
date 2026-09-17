@@ -1,3 +1,66 @@
+/* Custom cursor - dot and circle */
+.cursor-dot {
+  width: 8px;
+  height: 8px;
+  background-color: #ffffff;
+  border-radius: 50%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+  transition: transform 0.1s ease-out;
+}
+
+.cursor-circle {
+  width: 40px;
+  height: 40px;
+  border: 2px solid #ffffff;
+  border-radius: 50%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  transition:
+    width 0.3s ease-out,
+    height 0.3s ease-out,
+    border-color 0.3s ease-out;
+  z-index: 9998;
+}
+
+.cursor-circle.hovered {
+  width: 60px;
+  height: 60px;
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+body {
+  cursor: none;
+  margin: 0;
+  height: 100vh;
+  background-color: #ffffff;
+  overflow: hidden;
+}
+
+html {
+  overflow: hidden;
+}
+
+/* Hide default cursor on all elements */
+* {
+  cursor: none !important;
+}
+
+a,
+button,
+input,
+textarea,
+select {
+  cursor: none !important;
+}
+
 .fade-in {
   animation: fade-in ease 500ms;
   animation-iteration-count: 1;
@@ -17,7 +80,7 @@
   min-height: 70vh;
 
   @screen lg {
-    min-height: 95vh;
+    min-height: 85vh;
   }
 }
 

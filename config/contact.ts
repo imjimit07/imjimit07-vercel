@@ -19,7 +19,7 @@ export const contact: Contact = {
   calendly: 'https://calendly.com',
   links: {
     github: 'https://github.com/imjimit07',
-    linkedin: 'https://www.linkedin.com/in/jimit-patel-7ab025331/',
+    linkedin: 'https://www.linkedin.com/in/jimitpateldubai/',
     twitter: 'https://twitter.com/imjimit07',
     youtube: 'https://www.youtube.com/@imjimit07',
     email: 'mailto:jimit0907@gmail.com',
