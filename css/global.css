@@ -39,13 +39,7 @@
 body {
   cursor: none;
   margin: 0;
-  height: 100vh;
   background-color: #ffffff;
-  overflow: hidden;
-}
-
-html {
-  overflow: hidden;
 }
 
 /* Hide default cursor on all elements */
