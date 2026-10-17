@@ -16,7 +16,7 @@ function DeploymentList(props: DeploymentListProps): React.ReactElement {
 
     return (
       <a
-        className='mr-2 flex items-center rounded-sm px-2 py-1 text-xs font-medium text-white'
+        className='pressable mr-2 mb-1 flex items-center rounded-full px-3 py-1 text-xs font-medium text-white shadow-apple-sm'
         href={link}
         style={{ background }}
         target='_blank'
@@ -29,7 +29,7 @@ function DeploymentList(props: DeploymentListProps): React.ReactElement {
   }
 
   return (
-    <div className='flex'>
+    <div className='flex flex-wrap'>
       {React.Children.toArray(Object.keys(deployment).map(renderList))}
     </div>
   );

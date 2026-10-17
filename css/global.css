@@ -1,62 +1,245 @@
-/* Custom cursor - dot and circle */
-.cursor-dot {
-  width: 8px;
-  height: 8px;
-  background-color: #ffffff;
-  border-radius: 50%;
-  position: fixed;
-  top: 0;
+/* ------------------------------------------------------------------
+   Apple Design foundation
+   Motion + materials tokens live here as CSS variables so components
+   (and Tailwind utilities) can share one source of truth.
+   ------------------------------------------------------------------ */
+
+:root {
+  /* Materials: translucent layers let content scroll under the chrome */
+  --material-bg: rgba(255, 255, 255, 0.72);
+  --material-bg-thin: rgba(255, 255, 255, 0.55);
+  --material-bg-thick: rgba(255, 255, 255, 0.85);
+  --material-border: rgba(0, 0, 0, 0.08);
+  --material-border-strong: rgba(0, 0, 0, 0.35);
+  --material-highlight: rgba(255, 255, 255, 0.65);
+  --material-solid: rgba(250, 250, 250, 0.98);
+  --material-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+
+  /* Hairline separators — never full-opacity black */
+  --hairline: rgba(0, 0, 0, 0.08);
+
+  /* Canonical motion curves — copy these values, never approximate. */
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+  --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+.dark {
+  --material-bg: rgba(20, 20, 22, 0.72);
+  --material-bg-thin: rgba(20, 20, 22, 0.55);
+  --material-bg-thick: rgba(20, 20, 22, 0.85);
+  --material-border: rgba(255, 255, 255, 0.1);
+  --material-border-strong: rgba(255, 255, 255, 0.5);
+  --material-highlight: rgba(255, 255, 255, 0.12);
+  --material-solid: rgba(12, 12, 14, 0.98);
+  --material-shadow: 0 8px 32px rgba(0, 0, 0, 0.45);
+
+  --hairline: rgba(255, 255, 255, 0.1);
+}
+
+/* Prefer the platform font: it already ships optical sizing, tracking
+   tables and legibility tuning for every size. */
+html {
+  font-family:
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    sans-serif;
+  font-optical-sizing: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  scroll-behavior: smooth;
+}
+
+/* Selection picks up the brand color instead of the OS default */
+::selection {
+  background-color: rgba(6, 182, 212, 0.3);
+}
+
+/* ------------------------------------------------------------------
+   Focus & input
+   ------------------------------------------------------------------ */
+
+*:focus-visible {
+  outline: 2px solid theme('colors.primary.500');
+  outline-offset: 2px;
+}
+
+/* Instant press feedback, straight from the pointer-down. Works without
+   JavaScript so server-rendered links and buttons feel alive too. */
+.pressable {
+  transition: transform 160ms var(--ease-out);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.pressable:active {
+  transform: scale(0.97);
+}
+
+/* ------------------------------------------------------------------
+   Custom cursor
+   The class is toggled by <CustomCursor />, so the native cursor is only
+   hidden while the custom one is actually rendering (fine pointers,
+   motion allowed, no reduced-motion preference).
+   ------------------------------------------------------------------ */
+
+@media (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  html.has-custom-cursor,
+  html.has-custom-cursor * {
+    cursor: none !important;
+  }
+}
+
+/* ------------------------------------------------------------------
+   Materials
+   Bigger surfaces read as thicker: stronger blur + deeper shadow.
+   ------------------------------------------------------------------ */
+
+.material {
+  background-color: var(--material-bg);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid var(--material-border);
+}
+
+.material-thin {
+  background-color: var(--material-bg-thin);
+  -webkit-backdrop-filter: blur(12px) saturate(180%);
+  backdrop-filter: blur(12px) saturate(180%);
+  border: 1px solid var(--material-border);
+}
+
+.material-thick {
+  background-color: var(--material-bg-thick);
+  -webkit-backdrop-filter: blur(40px) saturate(180%);
+  backdrop-filter: blur(40px) saturate(180%);
+  border: 1px solid var(--material-border);
+  box-shadow:
+    inset 0 1px 0 var(--material-highlight),
+    var(--material-shadow);
+}
+
+.hairline {
+  border-color: var(--hairline);
+}
+
+/* Vibrancy: over translucent surfaces, text needs more contrast and a
+   touch of extra weight — flat gray text collapses into the blur. */
+.material-text {
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+
+/* Users who ask for less transparency get solid, frosty surfaces */
+@media (prefers-reduced-transparency: reduce) {
+  .material,
+  .material-thin,
+  .material-thick {
+    background-color: var(--material-solid);
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+}
+
+/* Users who ask for more contrast get defined edges and opaque surfaces */
+@media (prefers-contrast: more) {
+  .material,
+  .material-thin,
+  .material-thick {
+    background-color: var(--material-solid);
+    border-color: var(--material-border-strong);
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+}
+
+/* ------------------------------------------------------------------
+   Typography
+   Tracking is size-specific (negative as text grows, ~0 for body) and
+   leading tracks size inversely. Colors are left to the components so
+   the class-based dark theme stays in control.
+   ------------------------------------------------------------------ */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 600;
+  text-wrap: balance;
+}
+
+.display-heading {
+  font-size: clamp(2.25rem, 6vw, 4.5rem);
+  line-height: 1.05;
+  letter-spacing: -0.022em;
+  font-weight: 700;
+}
+
+.text-heading {
+  font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  font-weight: 600;
+}
+
+.text-body {
+  font-size: clamp(1rem, 1vw, 1.125rem);
+  line-height: 1.6;
+  letter-spacing: 0;
+}
+
+/* Underline that grows from the left on hover — opt-in, so it never
+   leaks onto cards, images or whole-row links. */
+.link-underline {
+  position: relative;
+  text-decoration: none;
+}
+
+.link-underline::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
   left: 0;
-  pointer-events: none;
-  transform: translate(-50%, -50%);
-  z-index: 9999;
-  transition: transform 0.1s ease-out;
+  width: 100%;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.9;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 220ms cubic-bezier(0.25, 1, 0.5, 1);
 }
 
-.cursor-circle {
-  width: 40px;
-  height: 40px;
-  border: 2px solid #ffffff;
-  border-radius: 50%;
-  position: fixed;
-  top: 0;
-  left: 0;
-  pointer-events: none;
-  transform: translate(-50%, -50%);
-  transition:
-    width 0.3s ease-out,
-    height 0.3s ease-out,
-    border-color 0.3s ease-out;
-  z-index: 9998;
+@media (hover: hover) and (pointer: fine) {
+  .link-underline:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
 }
 
-.cursor-circle.hovered {
-  width: 60px;
-  height: 60px;
-  border-color: rgba(255, 255, 255, 0.5);
+.link-underline:focus-visible::after {
+  transform: scaleX(1);
+  transform-origin: left;
 }
 
-body {
-  cursor: none;
-  margin: 0;
-  background-color: #ffffff;
+/* The card arrow slides only where a real pointer can hover — on touch
+   the tap navigates immediately, so a latched slide would be a lie. */
+@media (hover: hover) and (pointer: fine) {
+  .group:hover .card-arrow {
+    transform: translateX(4px);
+  }
 }
 
-/* Hide default cursor on all elements */
-* {
-  cursor: none !important;
-}
+/* ------------------------------------------------------------------
+   Motion
+   ------------------------------------------------------------------ */
 
-a,
-button,
-input,
-textarea,
-select {
-  cursor: none !important;
-}
-
+/* Fade-up used by page-level entrance animations */
 .fade-in {
-  animation: fade-in ease 500ms;
+  animation: fade-in ease-out 500ms;
   animation-iteration-count: 1;
   animation-fill-mode: forwards;
 }
@@ -64,11 +247,44 @@ select {
 @keyframes fade-in {
   0% {
     opacity: 0;
+    transform: translateY(10px);
   }
   100% {
     opacity: 1;
+    transform: translateY(0);
   }
 }
+
+/* Reduced motion: motion is reduced, not removed — position/scale changes
+   snap, while comprehension-friendly color and opacity fades survive. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  a,
+  button,
+  [role='button'],
+  summary,
+  input,
+  textarea,
+  select,
+  .material,
+  .material-thin,
+  .material-thick {
+    transition-duration: 150ms !important;
+    transition-property:
+      color, background-color, border-color, opacity, box-shadow !important;
+  }
+}
+
+/* ------------------------------------------------------------------
+   Layout
+   ------------------------------------------------------------------ */
 
 .banner {
   min-height: 70vh;
@@ -86,6 +302,62 @@ select {
   @apply !pb-0;
 }
 
-.collapse .view .title {
-  @apply dark:text-white;
+/* ------------------------------------------------------------------
+   MDX content
+   ------------------------------------------------------------------ */
+
+/* Keep anchor jumps clear of the sticky header */
+.prose :where(h1, h2, h3, h4, h5, h6) {
+  position: relative;
+  scroll-margin-top: 5.5rem;
+}
+
+/* Anchor links injected by rehype-autolink-headings: an empty link whose
+   glyph lives in CSS, revealed on hover like a quiet footnote. */
+.prose .heading-anchor {
+  position: absolute;
+  color: theme('colors.gray.400');
+  opacity: 0;
+  text-decoration: none;
+  transition: opacity 180ms var(--ease-out);
+}
+
+.prose .heading-anchor::after {
+  content: '#';
+  padding-left: 0.35em;
+  font-weight: 400;
+}
+
+.dark .prose .heading-anchor {
+  color: theme('colors.gray.600');
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .prose :where(h1, h2, h3, h4, h5, h6):hover .heading-anchor {
+    opacity: 1;
+  }
+}
+
+.prose .heading-anchor:focus-visible {
+  opacity: 1;
+}
+
+/* ```lang:title fences — a filename bar that merges with the block below */
+.prose .remark-code-title {
+  margin: 1.5rem 0 0;
+  padding: 0.4rem 1.25rem;
+  font-family: 'Fira Code', monospace;
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  color: theme('colors.gray.400');
+  background-color: theme('colors.gray.800');
+  border-top-left-radius: theme('borderRadius.apple-md');
+  border-top-right-radius: theme('borderRadius.apple-md');
+  border-bottom: 1px solid rgb(255 255 255 / 0.08);
+}
+
+.prose .remark-code-title + div > pre {
+  margin-top: 0;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
 }

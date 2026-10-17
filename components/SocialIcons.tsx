@@ -3,12 +3,14 @@ import { Colors } from 'config/colors';
 import { contact, ContactType } from 'config/contact';
 import React, { memo } from 'react';
 import { IconBaseProps } from 'react-icons';
+import { motion } from 'motion/react';
 import { FaLinkedinIn as LinkedinIcon } from 'react-icons/fa';
 import {
   IoLogoGithub as GithubIcon,
   IoLogoTwitter as TwitterIcon,
 } from 'react-icons/io';
 import { SiGmail as MailIcon, SiYoutube as YoutubeIcon } from 'react-icons/si';
+import { spring, useHoverCapable } from '@/lib/motion';
 import { Maybe, Tuple } from 'types';
 
 interface SocialIconsProps {
@@ -17,19 +19,25 @@ interface SocialIconsProps {
 
 function SocialIcons(props: SocialIconsProps): React.ReactElement {
   const { className } = props;
+  // whileHover states latch after a tap on touch devices — gate the lift
+  const canHover = useHoverCapable();
 
   return (
     <div className={clsx('mt-2 flex', className)}>
-      {React.Children.toArray(Object.entries(contact.links).map(resolveIcon))}
+      {React.Children.toArray(
+        Object.entries(contact.links).map(entry =>
+          resolveIcon(entry, canHover),
+        ),
+      )}
     </div>
   );
 }
 
-function resolveIcon(entry: Tuple<string>): React.ReactNode {
+function resolveIcon(entry: Tuple<string>, canHover: boolean): React.ReactNode {
   const [type, url] = entry;
 
   const props: IconBaseProps = {
-    className: 'icon cursor-pointer text-2xl mr-6',
+    className: 'icon text-2xl mr-6',
     color: Colors[type],
   };
 
@@ -60,16 +68,20 @@ function resolveIcon(entry: Tuple<string>): React.ReactNode {
   }
 
   return (
-    <a
+    <motion.a
       key={type}
       className='social-icons'
       href={url}
       aria-label={type}
       target='_blank'
       rel='noopener noreferrer'
+      // Springs carry the icon up and back — interruptible mid-hover
+      whileHover={canHover ? { y: -1 } : undefined}
+      whileTap={{ scale: 0.97, transition: spring.press }}
+      transition={spring.snappy}
     >
       {icon}
-    </a>
+    </motion.a>
   );
 }
 

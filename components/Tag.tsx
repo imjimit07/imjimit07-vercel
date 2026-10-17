@@ -5,10 +5,11 @@ interface Props {
   text: string;
 }
 
+/** Small translucent capsule — hover adds a whisper of fill, press dips. */
 const Tag = ({ text }: Props) => {
   return (
     <Link
-      className='mt-1 mr-3 text-sm font-medium uppercase text-primary-500 hover:text-primary-600 dark:hover:text-primary-400'
+      className='pressable mt-1 mr-3 inline-flex items-center rounded-full bg-gray-100/80 px-2.5 py-1 text-xs font-medium tracking-wide text-primary-600 uppercase transition-colors duration-150 hover:bg-primary-50 hover:text-primary-700 dark:bg-white/[0.06] dark:text-primary-400 dark:hover:bg-white/[0.1] dark:hover:text-primary-300'
       href={`/tags/${kebabCase(text)}`}
     >
       {text.split(' ').join('-')}

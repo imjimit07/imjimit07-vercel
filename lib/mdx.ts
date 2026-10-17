@@ -45,7 +45,7 @@ export function dateSortDesc(a: string, b: string) {
 }
 
 export async function getFileBySlug<T>(
-  type: 'authors' | 'blog' | 'courses',
+  type: 'authors' | 'blog' | 'courses' | 'demo',
   slug: string | string[],
 ) {
   const mdxPath = path.join(root, 'data', type, `${slug}.mdx`);
@@ -95,7 +95,17 @@ export async function getFileBySlug<T>(
       options.rehypePlugins = [
         ...(options.rehypePlugins ?? []),
         rehypeSlug,
-        rehypeAutolinkHeadings,
+        [
+          rehypeAutolinkHeadings,
+          {
+            behavior: 'append',
+            properties: {
+              className: ['heading-anchor'],
+              ariaHidden: 'true',
+              tabIndex: -1,
+            },
+          },
+        ],
         rehypeKatex,
         [rehypeCitation, { path: path.join(root, 'data') }],
         [rehypePrismPlus, { ignoreMissing: true }],

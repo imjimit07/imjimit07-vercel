@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useEffect, useRef, useState, useCallback } from 'react';
+import { useReducedMotion } from 'motion/react';
 import { useTheme } from 'next-themes';
 
 interface GridCell {
@@ -35,7 +36,10 @@ export default function InteractiveGridBackground({
   const lastMouseMoveRef = useRef<number>(Date.now());
   const animationFrameRef = useRef<number | undefined>(undefined);
   const idleAnimationRef = useRef<number | undefined>(undefined);
+  const runningRef = useRef(false);
+  const requestDrawRef = useRef<() => void>(() => {});
   const { theme, resolvedTheme } = useTheme();
+  const shouldReduceMotion = useReducedMotion();
   const [mounted, setMounted] = useState(false);
 
   // Wait for theme to be resolved
@@ -123,12 +127,44 @@ export default function InteractiveGridBackground({
       mousePositionRef.current = { x: e.clientX, y: e.clientY };
       lastMouseMoveRef.current = Date.now();
       createTrail(e.clientX, e.clientY);
+      requestDrawRef.current();
     },
     [createTrail],
   );
 
-  // Drawing function
-  const draw = useCallback(() => {
+  // Draw the static grid lines (shared by the animated and reduced-motion paths)
+  const drawGrid = useCallback(
+    (ctx: CanvasRenderingContext2D, colors: ReturnType<typeof getColors>) => {
+      const canvas = canvasRef.current;
+      if (!canvas) return;
+
+      ctx.fillStyle = colors.background;
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      ctx.strokeStyle = colors.grid;
+      ctx.lineWidth = 1;
+
+      for (let x = 0; x <= canvas.width; x += cellSize) {
+        ctx.beginPath();
+        ctx.moveTo(x, 0);
+        ctx.lineTo(x, canvas.height);
+        ctx.stroke();
+      }
+
+      for (let y = 0; y <= canvas.height; y += cellSize) {
+        ctx.beginPath();
+        ctx.moveTo(0, y);
+        ctx.lineTo(canvas.width, y);
+        ctx.stroke();
+      }
+    },
+    [cellSize],
+  );
+
+  // Draw one frame; frames are only scheduled while something changes
+  const drawOnce = useCallback(() => {
+    runningRef.current = false;
+
     const canvas = canvasRef.current;
     if (!canvas) return;
 
@@ -139,29 +175,8 @@ export default function InteractiveGridBackground({
     const now = Date.now();
     const isIdle = now - lastMouseMoveRef.current > 2000;
 
-    // Clear canvas
-    ctx.fillStyle = colors.background;
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-    // Draw grid lines
-    ctx.strokeStyle = colors.grid;
-    ctx.lineWidth = 1;
-
-    // Vertical lines
-    for (let x = 0; x <= canvas.width; x += cellSize) {
-      ctx.beginPath();
-      ctx.moveTo(x, 0);
-      ctx.lineTo(x, canvas.height);
-      ctx.stroke();
-    }
-
-    // Horizontal lines
-    for (let y = 0; y <= canvas.height; y += cellSize) {
-      ctx.beginPath();
-      ctx.moveTo(0, y);
-      ctx.lineTo(canvas.width, y);
-      ctx.stroke();
-    }
+    // Clear canvas + grid lines
+    drawGrid(ctx, colors);
 
     // Draw glowing cells
     const cellsToRemove: string[] = [];
@@ -208,9 +223,25 @@ export default function InteractiveGridBackground({
     // Remove expired cells
     cellsToRemove.forEach(key => cellsRef.current.delete(key));
 
-    // Continue animation
-    animationFrameRef.current = requestAnimationFrame(draw);
-  }, [cellSize, glowDuration, getColors]);
+    // Keep animating while any glow cells are still decaying
+    if (cellsRef.current.size > 0) requestDrawRef.current();
+  }, [cellSize, glowDuration, getColors, drawGrid]);
+
+  // Schedule a frame only when something changed — no idle rAF loop
+  const requestDraw = useCallback(() => {
+    if (runningRef.current) return;
+    runningRef.current = true;
+    animationFrameRef.current = requestAnimationFrame(drawOnce);
+  }, [drawOnce]);
+
+  useEffect(() => {
+    requestDrawRef.current = requestDraw;
+  }, [requestDraw]);
+
+  // On-demand rendering would keep stale colors after a light/dark toggle
+  useEffect(() => {
+    requestDraw();
+  }, [currentTheme, requestDraw]);
 
   // Setup canvas and event listeners
   useEffect(() => {
@@ -221,35 +252,67 @@ export default function InteractiveGridBackground({
     const resize = () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
+      requestDraw();
     };
     resize();
 
     window.addEventListener('resize', resize);
+
+    // Reduced motion: paint the grid once and leave it — no rAF loop, no
+    // idle pulses, no full-viewport animation.
+    if (shouldReduceMotion) {
+      const ctx = canvas.getContext('2d');
+      if (ctx) {
+        resize();
+        drawGrid(ctx, getColors());
+      }
+      return () => window.removeEventListener('resize', resize);
+    }
+
     window.addEventListener('mousemove', handleMouseMove);
 
-    // Start drawing loop
-    animationFrameRef.current = requestAnimationFrame(draw);
+    // Repaint when the tab returns, so on-screen glow state is fresh
+    const onVisibility = () => {
+      if (document.visibilityState === 'visible') requestDraw();
+    };
+    document.addEventListener('visibilitychange', onVisibility);
+
+    // Paint the first frame (and let it chain while cells decay)
+    requestDraw();
 
     // Start idle animation
     idleAnimationRef.current = window.setInterval(() => {
+      if (document.visibilityState !== 'visible') return;
       const now = Date.now();
       const timeSinceLastMove = now - lastMouseMoveRef.current;
       if (timeSinceLastMove > 2000) {
         triggerIdleAnimation();
+        requestDraw();
       }
     }, idleAnimationInterval);
 
     return () => {
       window.removeEventListener('resize', resize);
       window.removeEventListener('mousemove', handleMouseMove);
+      document.removeEventListener('visibilitychange', onVisibility);
       if (animationFrameRef.current) {
         cancelAnimationFrame(animationFrameRef.current);
       }
+      runningRef.current = false;
       if (idleAnimationRef.current) {
         clearInterval(idleAnimationRef.current);
       }
     };
-  }, [handleMouseMove, draw, triggerIdleAnimation, idleAnimationInterval]);
+  }, [
+    handleMouseMove,
+    drawOnce,
+    drawGrid,
+    getColors,
+    triggerIdleAnimation,
+    idleAnimationInterval,
+    shouldReduceMotion,
+    requestDraw,
+  ]);
 
   return (
     <div className={`fixed inset-0 -z-10 ${className}`}>

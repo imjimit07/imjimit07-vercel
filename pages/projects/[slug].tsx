@@ -3,9 +3,11 @@ import { H1, H2, H3 } from '@/components/Form';
 import DeploymentList from '@/components/list/DeploymentList';
 import StackList from '@/components/list/StackList';
 import { PageSEO } from '@/components/SEO';
+import { spring, stagger, staggerItem, useHoverCapable } from '@/lib/motion';
 import config from 'config';
 import type { Project, SubProject } from 'config/projects';
 import { defaultDimensions } from 'config/projects';
+import { motion } from 'motion/react';
 import { GetStaticProps, InferGetStaticPropsType } from 'next';
 import Image from 'next/image';
 import React, { useCallback } from 'react';
@@ -48,6 +50,7 @@ export default function Project({
   } = project;
 
   const [height, width] = dimensions ?? defaultDimensions;
+  const canHover = useHoverCapable();
 
   const renderScreenShotList = useCallback(
     (screenshot: string) => {
@@ -57,9 +60,11 @@ export default function Project({
       };
 
       return (
-        <div
-          className='mr-2 flex-shrink-0 overflow-hidden rounded bg-placeholder-light dark:bg-placeholder-dark'
+        <motion.div
+          className='mr-3 flex-shrink-0 cursor-grab overflow-hidden rounded-apple-md bg-placeholder-light shadow-apple-sm active:cursor-grabbing dark:bg-placeholder-dark'
           style={style}
+          whileHover={canHover ? { y: -2, scale: 1.01 } : undefined}
+          transition={spring.snappy}
         >
           <Image
             loading='eager'
@@ -68,22 +73,23 @@ export default function Project({
             width={width}
             style={{ objectFit: 'contain' }}
             alt=''
+            draggable={false}
           />
-        </div>
+        </motion.div>
       );
     },
-    [height, width],
+    [height, width, canHover],
   );
 
   const renderSubProjectList = useCallback(
     ({ title, deployment, description }: SubProject) => (
-      <>
+      <motion.div variants={staggerItem}>
         <H3>{title}</H3>
         <Conditional condition={!!deployment}>
           <DeploymentList deployment={deployment} />
         </Conditional>
         <p className='mt-2 mb-4 font-light'>{description}</p>
-      </>
+      </motion.div>
     ),
     [],
   );
@@ -99,34 +105,51 @@ export default function Project({
         description={shortDescription || description}
         imageUrl={banner}
       />
-      <H1 className='lg:text-5x mb-4 mt-8 text-3xl font-bold dark:text-white'>
-        {title}
-      </H1>
-      <p className='mb-4 font-light'>{description}</p>
+      <motion.div
+        variants={stagger(0.08)}
+        initial='hidden'
+        animate='show'
+        className='pt-8'
+      >
+        <motion.div variants={staggerItem}>
+          <H1 className='mb-4'>{title}</H1>
+          <p className='mb-2 font-light text-gray-600 dark:text-gray-300'>
+            {description}
+          </p>
+        </motion.div>
 
-      <H2>Stack</H2>
-      <StackList stack={stack} />
+        <motion.div variants={staggerItem} className='mt-6'>
+          <H2>Stack</H2>
+          <StackList stack={stack} />
+        </motion.div>
 
-      <Conditional condition={hasDeployments}>
-        <H2>Deployments</H2>
-        <DeploymentList deployment={deployment} />
-      </Conditional>
+        <Conditional condition={hasDeployments}>
+          <motion.div variants={staggerItem} className='mt-6'>
+            <H2>Deployments</H2>
+            <DeploymentList deployment={deployment} />
+          </motion.div>
+        </Conditional>
 
-      <Conditional condition={hasScreenshots}>
-        <H2 className='my-4'>Screenshots</H2>
-        <ScrollContainer
-          className='list mt-4 mb-1 flex overflow-auto'
-          hideScrollbars={false}
-        >
-          {React.Children.toArray(screenshots.map(renderScreenShotList))}
-        </ScrollContainer>
-      </Conditional>
+        <Conditional condition={hasScreenshots}>
+          <motion.div variants={staggerItem} className='mt-6'>
+            <H2 className='my-4'>Screenshots</H2>
+            <ScrollContainer
+              className='list mt-4 mb-1 flex select-none overflow-auto pb-2'
+              hideScrollbars={false}
+            >
+              {React.Children.toArray(screenshots.map(renderScreenShotList))}
+            </ScrollContainer>
+          </motion.div>
+        </Conditional>
 
-      <Conditional condition={hasSubProjects}>
-        <H2 className='mt-4'>More Products</H2>
-        <p className='mt-1 mb-4 font-light'>Some additional products</p>
-        {React.Children.toArray(subProjects.map(renderSubProjectList))}
-      </Conditional>
+        <Conditional condition={hasSubProjects}>
+          <motion.div variants={staggerItem} className='mt-6'>
+            <H2 className='mt-4'>More Products</H2>
+            <p className='mt-1 mb-4 font-light'>Some additional products</p>
+          </motion.div>
+          {React.Children.toArray(subProjects.map(renderSubProjectList))}
+        </Conditional>
+      </motion.div>
     </>
   );
 }

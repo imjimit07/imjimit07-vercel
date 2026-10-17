@@ -1,91 +1,122 @@
 import { useEffect, useRef, useState } from 'react';
+import {
+  AnimatePresence,
+  motion,
+  useMotionValue,
+  useReducedMotion,
+  useTransform,
+} from 'motion/react';
+import { spring } from '@/lib/motion';
 
+const STORAGE_KEY = 'preloader-seen';
+/** Kept deliberately short: this is latency we're spending on purpose. */
+const DURATION = 900;
+const HOLD_AFTER = 120;
+
+type PreloaderState = 'idle' | 'loading' | 'done';
+
+/**
+ * First-visit intro. Repeat visitors (same session) and reduced-motion
+ * users go straight to the content — no artificial wait.
+ */
 const Preloader = () => {
-  const [hidden, setHidden] = useState(false);
-  const fillRef = useRef<HTMLSpanElement>(null);
-  const textRef = useRef<HTMLSpanElement>(null);
+  const [state, setState] = useState<PreloaderState>('idle');
+  const labelRef = useRef<HTMLSpanElement>(null);
+  const shouldReduceMotion = useReducedMotion();
+
+  // Progress drives a clip-path straight from a motion value, so the
+  // counter never re-renders React 60 times a second.
+  const progress = useMotionValue(0);
+  const clipPath = useTransform(
+    progress,
+    latest => `inset(0 ${100 - latest * 100}% 0 0)`,
+  );
 
   useEffect(() => {
-    const duration = 1500;
-    const step = 10;
-    const increment = 100 / (duration / step);
-    let count = 0;
+    let seen = false;
+    try {
+      seen = window.sessionStorage.getItem(STORAGE_KEY) === '1';
+    } catch {
+      // Storage unavailable (private mode): fall through and play it once
+    }
 
-    const timer = setInterval(() => {
-      count = Math.min(count + increment, 100);
-      const pct = Math.round(count);
-      if (textRef.current) {
-        textRef.current.textContent = `loading... ${pct}%`;
-      }
-      if (fillRef.current) {
-        fillRef.current.style.clipPath = `inset(0 ${100 - pct}% 0 0)`;
-      }
-      if (count >= 100) {
-        clearInterval(timer);
-      }
-    }, step);
+    if (seen || shouldReduceMotion) {
+      setState('done');
+      return;
+    }
 
-    const hideTimer = setTimeout(() => {
-      setHidden(true);
-      document.body.style.overflow = '';
-    }, duration + 300);
-
+    setState('loading');
     document.body.style.overflow = 'hidden';
 
+    const start = performance.now();
+    let raf = 0;
+    let holdTimer: ReturnType<typeof setTimeout> | undefined;
+
+    const finish = () => {
+      try {
+        window.sessionStorage.setItem(STORAGE_KEY, '1');
+      } catch {
+        // Ignore — worst case it plays again next load
+      }
+      document.body.style.overflow = '';
+      setState('done');
+    };
+
+    const tick = (now: number) => {
+      const t = Math.min((now - start) / DURATION, 1);
+      progress.set(t);
+
+      if (labelRef.current) {
+        labelRef.current.textContent = `loading... ${Math.round(t * 100)}%`;
+      }
+
+      if (t < 1) {
+        raf = requestAnimationFrame(tick);
+        return;
+      }
+      holdTimer = setTimeout(finish, HOLD_AFTER);
+    };
+
+    raf = requestAnimationFrame(tick);
+
     return () => {
-      clearInterval(timer);
-      clearTimeout(hideTimer);
+      cancelAnimationFrame(raf);
+      if (holdTimer) clearTimeout(holdTimer);
       document.body.style.overflow = '';
     };
-  }, []);
-
-  if (hidden) return null;
+  }, [progress, shouldReduceMotion]);
 
   return (
-    <div className='fixed inset-0 z-50 flex flex-col items-center justify-center bg-black'>
-      <div className='relative' style={{ lineHeight: 1 }}>
-        <span
-          className='whitespace-nowrap'
-          style={{
-            fontFamily: "'IBM Plex Sans', sans-serif",
-            fontSize: '4.5rem',
-            fontWeight: 700,
-            letterSpacing: '0.06em',
-            color: 'rgba(255,255,255,0.15)',
-          }}
+    <AnimatePresence>
+      {state === 'loading' && (
+        <motion.div
+          key='preloader'
+          aria-hidden='true'
+          className='fixed inset-0 z-[70] flex flex-col items-center justify-center bg-black'
+          initial={false}
+          exit={{ opacity: 0, scale: 1.02 }}
+          transition={spring.soft}
         >
-          Jimit Patel
-        </span>
-        <span
-          ref={fillRef}
-          className='absolute left-0 top-0 whitespace-nowrap'
-          style={{
-            fontFamily: "'IBM Plex Sans', sans-serif",
-            fontSize: '4.5rem',
-            fontWeight: 700,
-            letterSpacing: '0.06em',
-            color: '#fff',
-            clipPath: 'inset(0 100% 0 0)',
-          }}
-        >
-          Jimit Patel
-        </span>
-        <span
-          ref={textRef}
-          className='absolute right-0 uppercase'
-          style={{
-            fontFamily: "'IBM Plex Sans', sans-serif",
-            bottom: '-2.5rem',
-            fontSize: '0.875rem',
-            fontWeight: 300,
-            letterSpacing: '0.2em',
-            color: 'rgba(255,255,255,0.5)',
-          }}
-        >
-          loading... 0%
-        </span>
-      </div>
-    </div>
+          <div className='relative' style={{ lineHeight: 1 }}>
+            <span className='display-heading whitespace-nowrap text-white/15'>
+              Jimit Patel
+            </span>
+            <motion.span
+              className='display-heading absolute left-0 top-0 whitespace-nowrap text-white'
+              style={{ clipPath }}
+            >
+              Jimit Patel
+            </motion.span>
+            <span
+              ref={labelRef}
+              className='absolute right-0 -bottom-10 text-xs font-light tracking-[0.2em] text-white/50 uppercase'
+            >
+              loading... 0%
+            </span>
+          </div>
+        </motion.div>
+      )}
+    </AnimatePresence>
   );
 };
 

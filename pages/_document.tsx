@@ -49,12 +49,18 @@ class MyDocument extends Document {
           />
           <link rel='manifest' href='/static/favicons/site.webmanifest' />
           <meta name='msapplication-TileColor' content='#000000' />
-          <meta name='theme-color' content='#000000' />
-          <link rel='alternate' type='application/rss+xml' href='/feed.xml' />
-          <link
-            rel='stylesheet'
-            href='https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;700&display=swap'
+          {/* Split theme-color so browser chrome matches whichever theme is active */}
+          <meta
+            name='theme-color'
+            media='(prefers-color-scheme: light)'
+            content='#ffffff'
           />
+          <meta
+            name='theme-color'
+            media='(prefers-color-scheme: dark)'
+            content='#171717'
+          />
+          <link rel='alternate' type='application/rss+xml' href='/feed.xml' />
         </Head>
         <body className='bg-white text-black antialiased dark:bg-gray-900 dark:text-white'>
           <Main />

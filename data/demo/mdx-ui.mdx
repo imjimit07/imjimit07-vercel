@@ -1,0 +1,110 @@
+---
+title: 'MDX UI components'
+description: 'Every component and element style available inside MDX content.'
+date: '2026-10-18'
+tags: ['Demo']
+---
+
+Everything on this page renders from a single MDX file through the shared
+component mapping — content files never import UI components.
+
+## Callouts
+
+<Callout type='info' title='Before you begin'>
+  Ensure the MDX component mapping includes every element your content uses.
+</Callout>
+
+<Callout type='success'>
+  Registered components render anywhere in the document.
+</Callout>
+
+<Callout type='warning'>
+  Copy buttons need a secure context — `https` or `localhost`.
+</Callout>
+
+<Callout type='danger'>
+  Never put business logic in MDX; push it into a reusable component.
+</Callout>
+
+## Steps
+
+<Steps>
+  <Step>Create an MDX file under `data/`.</Step>
+  <Step>Use components directly — the mapping wires them up.</Step>
+  <Step>Run `npm run build` to validate the content compiles.</Step>
+</Steps>
+
+## Tabs
+
+<Tabs labels={['Preview', 'Code']}>
+  <TabsContent label='Preview'>
+    Panels are keyboard navigable: focus a tab, then use the arrow keys.
+  </TabsContent>
+  <TabsContent label='Code'>
+
+    ```tsx
+    <Tabs labels={['Preview', 'Code']}>
+      <TabsContent label='Preview'>…</TabsContent>
+    </Tabs>
+    ```
+
+  </TabsContent>
+</Tabs>
+
+## Badges
+
+Inline status: <Badge>New</Badge> <Badge variant='secondary'>Draft</Badge> <Badge variant='destructive'>Deprecated</Badge> <Badge variant='outline'>Experimental</Badge>
+
+## Code
+
+Fenced blocks get syntax highlighting, a copy button, and optional title bars
+through the `lang:title` meta:
+
+```tsx:components/mdx/Badge.tsx
+const variants = {
+  default: 'bg-gray-900 text-white',
+  outline: 'ring-1 ring-gray-300',
+};
+
+export default function Badge({ variant = 'default', children }) {
+  return <span className={variants[variant]}>{children}</span>;
+}
+```
+
+Short snippets can also use `<CodeBlock>`:
+
+<CodeBlock language='bash' filename='terminal'>
+  npx shadcn@latest add button
+</CodeBlock>
+
+## Component previews
+
+<ComponentPreview name='badge' />
+
+<ComponentPreview name='callout' />
+
+<ComponentPreview name='steps' />
+
+Missing entries fail soft instead of breaking the page:
+
+<ComponentPreview name='mystery-widget' />
+
+## Tables
+
+| Component                                                             | Renders from | Registered in                  |
+| --------------------------------------------------------------------- | ------------ | ------------------------------ |
+| `Callout`                                                             | MDX children | `components/MDXComponents.tsx` |
+| `Steps` + `Step`                                                      | MDX children | `components/MDXComponents.tsx` |
+| A really long cell that forces horizontal scrolling on narrow screens | MDX children | `components/MDXComponents.tsx` |
+
+## Links & inline code
+
+External links are handled safely — see [MDX](https://mdxjs.com) and
+[Next.js](https://nextjs.org) — while inline code like `npm run build` keeps
+its own treatment.
+
+> Blockquotes keep the prose treatment; use them for pull quotes.
+
+### A heading to test anchor links
+
+Hover a heading and a `#` appears; jumping to it respects the sticky header.

@@ -6,6 +6,13 @@ import CustomLink from './Link';
 import TOCInline from './TOCInline';
 import Pre from './Pre';
 import { BlogNewsletterForm } from './NewsletterForm';
+import Badge from './mdx/Badge';
+import Callout from './mdx/Callout';
+import CodeBlock from './mdx/CodeBlock';
+import ComponentPreview from './mdx/ComponentPreview';
+import { Step, Steps } from './mdx/Steps';
+import MdxTable from './mdx/Table';
+import { Tabs, TabsContent } from './mdx/Tabs';
 
 // 2. Define a custom type for your components to replace ComponentMap
 // We use 'any' for the component values to maintain compatibility with your @ts-ignores
@@ -31,9 +38,19 @@ export const MDXComponents: MDXComponentsType = {
   TOCInline,
   a: CustomLink as any,
   pre: Pre as any,
+  table: MdxTable as any,
   wrapper: Wrapper as any,
   //@ts-ignore
   BlogNewsletterForm,
+  // MDX UI components — usable in content without imports
+  Badge,
+  Callout,
+  CodeBlock,
+  ComponentPreview,
+  Step,
+  Steps,
+  Tabs,
+  TabsContent,
 };
 
 interface Props {

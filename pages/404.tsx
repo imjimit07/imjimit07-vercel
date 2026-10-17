@@ -1,26 +1,45 @@
 import Link from '@/components/Link';
+import { spring, stagger, staggerItem, useHoverCapable } from '@/lib/motion';
+import { motion } from 'motion/react';
 
 export default function FourZeroFour() {
+  const canHover = useHoverCapable();
+
   return (
-    <div className='fade-in flex flex-col items-start justify-start md:mt-24 md:flex-row md:items-center md:justify-center md:space-x-6'>
-      <div className='space-x-2 pt-6 pb-8 md:space-y-5'>
-        <h1 className='text-6xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 md:border-r-2 md:px-6 md:text-8xl md:leading-14'>
-          404
-        </h1>
-      </div>
-      <div className='max-w-md'>
-        <p className='mb-4 text-xl font-bold leading-normal md:text-2xl'>
-          Sorry we couldn't find this page.
+    <motion.div
+      variants={stagger(0.08)}
+      initial='hidden'
+      animate='show'
+      className='flex min-h-[60vh] flex-col items-start justify-center gap-6 md:flex-row md:items-center md:justify-center md:gap-10'
+    >
+      <motion.h1
+        variants={staggerItem}
+        className='display-heading text-gray-900 dark:text-gray-100 md:border-r-2 md:border-gray-200 md:pr-10 dark:md:border-gray-700'
+      >
+        404
+      </motion.h1>
+      <motion.div variants={staggerItem} className='max-w-md space-y-4'>
+        <p className='text-2xl font-semibold tracking-apple-tight text-gray-900 dark:text-gray-100'>
+          This page doesn't exist.
         </p>
-        <p className='mb-8'>
-          But dont worry, you can find plenty of other things on our homepage.
+        <p className='text-gray-500 dark:text-gray-400'>
+          The link may be broken, or the page may have moved. Everything else is
+          exactly where you left it.
         </p>
-        <Link href='/'>
-          <button className='focus:shadow-outline-blue inline rounded-lg border border-transparent bg-blue-600 px-4 py-2 text-sm font-medium leading-5 text-white shadow transition-colors duration-150 hover:bg-blue-700 focus:outline-none dark:hover:bg-blue-500'>
+        <motion.div
+          className='inline-flex'
+          whileHover={canHover ? { y: -2 } : undefined}
+          whileTap={{ scale: 0.97 }}
+          transition={spring.snappy}
+        >
+          <Link
+            href='/'
+            className='rounded-full bg-primary-500 px-5 py-2.5 text-sm font-medium text-white shadow-apple-sm hover:bg-primary-600'
+          >
             Back to homepage
-          </button>
-        </Link>
-      </div>
-    </div>
+          </Link>
+        </motion.div>
+      </motion.div>
+    </motion.div>
   );
 }

@@ -1,8 +1,8 @@
 import Link from '@/components/Link';
-import { useRandomColorPair } from '@/lib/hooks/useRandomColorPair';
-import { memo, useEffect, useState } from 'react';
-import { RoughNotation } from 'react-rough-notation';
+import { memo } from 'react';
 import { AuthorFrontMatter } from 'types/AuthorFrontMatter';
+import { motion } from 'motion/react';
+import { stagger, staggerItem } from '@/lib/motion';
 
 interface BannerProps {
   frontMatter: AuthorFrontMatter;
@@ -10,59 +10,48 @@ interface BannerProps {
 
 function Banner(props: BannerProps): React.ReactElement {
   const { frontMatter } = props;
-  const [aboutColor, contactColor] = useRandomColorPair();
-  const [showAnnotations, setShowAnnotations] = useState(false);
 
-  useEffect(() => {
-    // Wait for preloader to finish (1500ms duration + 300ms delay = 1800ms)
-    const timer = setTimeout(() => {
-      setShowAnnotations(true);
-    }, 1800);
-
-    return () => clearTimeout(timer);
-  }, []);
-
+  // Lines enter together on a stagger — no artificial delay, the spring
+  // starts as soon as the page paints.
   return (
-    <div className='fade-in banner flex flex-1 flex-col justify-center px-6 py-10 dark:text-white lg:px-10'>
-      <h1 className='text-3xl font-bold dark:text-white lg:text-5xl'>
+    <motion.div
+      variants={stagger(0.09, 0.1)}
+      initial='hidden'
+      animate='show'
+      className='flex flex-1 flex-col justify-center px-6 py-apple-2xl lg:px-10'
+    >
+      <motion.h1
+        variants={staggerItem}
+        className='display-heading font-bold text-gray-900 dark:text-white'
+      >
         Hi, I am {frontMatter.shortname}
-      </h1>
-      <p className='my-2 text-lg lg:my-4 lg:text-2xl'>
+      </motion.h1>
+      <motion.p
+        variants={staggerItem}
+        className='text-heading mt-apple-sm text-gray-700 dark:text-gray-200 lg:mt-apple-md'
+      >
         {frontMatter.occupation}
-      </p>
-      <p className='font-light lg:text-xl'>
-        Read more
+      </motion.p>
+      <motion.p
+        variants={staggerItem}
+        className='text-body mt-apple-md font-light text-gray-600 dark:text-gray-300 lg:mt-apple-xl'
+      >
+        Read more{' '}
         <Link
-          className='ml-2 mr-2 font-normal text-white dark:text-white'
+          className='link-underline text-primary-600 dark:text-primary-400'
           href='/about'
         >
-          <RoughNotation
-            show={showAnnotations}
-            type='underline'
-            animationDelay={250}
-            animationDuration={2000}
-            color={aboutColor}
-          >
-            about me
-          </RoughNotation>
-        </Link>
-        or
+          about me
+        </Link>{' '}
+        or{' '}
         <Link
-          className='ml-2 font-normal text-white dark:text-white'
+          className='link-underline text-primary-600 dark:text-primary-400'
           href='mailto:jimit0907@gmail.com'
         >
-          <RoughNotation
-            show={showAnnotations}
-            type='underline'
-            animationDelay={500}
-            animationDuration={2000}
-            color={contactColor}
-          >
-            contact me
-          </RoughNotation>
+          contact me
         </Link>
-      </p>
-    </div>
+      </motion.p>
+    </motion.div>
   );
 }
 

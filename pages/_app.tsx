@@ -4,13 +4,9 @@ import '@/css/tailwind.css';
 import 'katex/dist/katex.css';
 
 import '@fontsource/fira-code';
-import '@fontsource/ibm-plex-sans/300.css';
-import '@fontsource/ibm-plex-sans/400.css';
-import '@fontsource/ibm-plex-sans/500.css';
-import '@fontsource/ibm-plex-sans/600.css';
-import '@fontsource/ibm-plex-sans/700.css';
 
 import { ThemeProvider, useTheme } from 'next-themes';
+import { MotionConfig } from 'motion/react';
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
 
@@ -34,13 +30,17 @@ export default function App({ Component, pageProps }: AppProps) {
       </Head>
       {isDevelopment && isSocket && <ClientReload />}
       <Analytics />
-      <Preloader />
-      <CustomCursor />
-      <GeistProviderWithTheme>
-        <LayoutWrapper>
-          <Component {...pageProps} />
-        </LayoutWrapper>
-      </GeistProviderWithTheme>
+      {/* Motion degrades transforms/layout animations to opacity for users
+          who prefer reduced motion — springs stay interruptible for everyone else */}
+      <MotionConfig reducedMotion='user'>
+        <Preloader />
+        <CustomCursor />
+        <GeistProviderWithTheme>
+          <LayoutWrapper>
+            <Component {...pageProps} />
+          </LayoutWrapper>
+        </GeistProviderWithTheme>
+      </MotionConfig>
     </ThemeProvider>
   );
 }
