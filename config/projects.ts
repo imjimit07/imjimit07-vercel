@@ -35,7 +35,7 @@ export const projects: Project[] = [
   {
     title: 'Second Look',
     slug: 'second-look',
-    banner: '/static/projects/Second Look/banner.png',
+    banner: '/static/projects/Second Look/Banner.png',
     website: 'https://github.com/imjimit07/Second-Look',
     description:
       'Paste a suspicious message. Get the tactic, the evidence, what to do next and a message you can send to someone you trust.',
