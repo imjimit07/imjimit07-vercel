@@ -42,7 +42,7 @@ export const projects: Project[] = [
     shortDescription: 'Detects Scam messages.',
     repository: 'https://github.com/imjimit07/Chess-Engine',
     stack: [Stack.python, Stack.pytorch, Stack.machineLearning],
-    dimensions: [600, 1280],
+    dimensions: [945, 820],
     screenshots: ['/static/projects/Second Look/Banner.png'],
     deployment: {
       web: 'https://github.com/imjimit07/Second-Look',
