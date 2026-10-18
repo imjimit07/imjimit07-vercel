@@ -93,7 +93,7 @@ function Brand({
   return (
     <div className='hairline flex items-center gap-3 border-b px-5 py-6'>
       <Image
-        src='/static/avatar.jpg'
+        src='/static/avatar.jpeg'
         alt='Jimit Patel'
         width={44}
         height={44}

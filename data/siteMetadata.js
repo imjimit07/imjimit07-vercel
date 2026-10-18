@@ -9,7 +9,7 @@ const siteMetadata = {
   siteUrl: 'https://imjimit07.vercel.app/',
   siteRepo: 'https://github.com/imjimit07/imjimit07-vercel',
   siteLogo: '/static/images/logo.png',
-  image: '/static/avatar.jpg',
+  image: '/static/avatar.jpeg',
   socialBanner: '/static/banner.png',
   email: 'imjimit07@gmail.com',
   github: 'https://github.com/imjimit07',
