@@ -43,7 +43,7 @@ export const projects: Project[] = [
     repository: 'https://github.com/imjimit07/Chess-Engine',
     stack: [Stack.python, Stack.pytorch, Stack.machineLearning],
     dimensions: [600, 1280],
-    screenshots: ['/static/projects/Second Look/banner.png'],
+    screenshots: ['/static/projects/Second Look/Banner.png'],
     deployment: {
       web: 'https://github.com/imjimit07/Second-Look',
     },
