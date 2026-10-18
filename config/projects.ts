@@ -39,7 +39,7 @@ export const projects: Project[] = [
     website: 'https://github.com/imjimit07/Second-Look',
     description:
       'Paste a suspicious message. Get the tactic, the evidence, what to do next and a message you can send to someone you trust.',
-    shortDescription: 'A 2500 Elo Chess Engine',
+    shortDescription: 'Detects Scam messages.',
     repository: 'https://github.com/imjimit07/Chess-Engine',
     stack: [Stack.python, Stack.pytorch, Stack.machineLearning],
     dimensions: [600, 1280],
